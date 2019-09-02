@@ -1,0 +1,4 @@
+  token: !secret hacs_token  
+  theme: true
+  sidepanel_title: HACS
+  sidepanel_icon: mdi:alpha-h-box

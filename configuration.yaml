@@ -1,0 +1,51 @@
+default_config:
+homeassistant:
+  customize: !include customize.yaml
+frontend:
+  themes: !include themes.yaml
+discovery:  
+
+##################
+# Text to speech #
+##################
+tts:
+  - platform: amazon_polly
+    aws_access_key_id: !secret polly_key_id 
+    aws_secret_access_key: !secret polly_access_key 
+    voice: Joanna
+
+  - platform: google_cloud
+    key_file: googlecloud.json
+    voice: en-US-Wavenet-D
+    profiles:
+      - medium-bluetooth-speaker-class-device
+      - small-bluetooth-speaker-class-device  
+ 
+  - platform: google_translate
+  
+  - platform: watson_tts
+    watson_apikey: !secret watson_api
+
+################  
+# Integrations #
+################ 
+skybell:
+  username: !secret skybell_username
+  password: !secret skybell_password
+
+############
+# Includes #
+############    
+hacs: !include hacs.yaml      
+notify: !include notify.yaml  
+alarm_control_panel: !include alarm.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+remote: !include remotes.yaml
+weather: !include weather.yaml
+camera: !include cameras.yaml
+life360: !include life360.yaml
+scene: !include scenes.yaml

@@ -1,0 +1,5 @@
+- platform: skybell
+  monitored_conditions:
+  - avatar
+  - activity
+  activity_name: "Last Activity"

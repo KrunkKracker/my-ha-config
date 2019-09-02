@@ -1,0 +1,58 @@
+- platform: skybell
+  monitored_conditions:
+      - button
+      - motion
+      
+- platform: template
+  sensors:
+    motion_entryway:
+      friendly_name: "Entryway Motion"
+      device_class: motion
+      value_template: "{{ states('sensor.entryway_burglar')|float > 0 }}" 
+        
+- platform: template
+  sensors:
+    motion_kitchen:
+      friendly_name: "Kitchen Motion"
+      device_class: motion
+      value_template: "{{ states('sensor.kitchen_motion_burglar')|float > 0 }}"
+
+# - platform: template
+#     sensors:
+#       motion_house:
+#         friendly_name: House Motion
+#         entity_id: binary_sensor.dining_room_motion,binary_sensor.entryway_motion_2,binary_sensor.garage_motion_sensor,binary_sensor.kitchen_motion 
+#         device_class: motion
+#         value_template: >-
+#           {{ is_state('binary_sensor.dining_room_motion', 'on')
+#              or is_state('binary_sensor.entryway_motion_2', 'on')
+#              or is_state('binary_sensor.garage_motion_sensor', 'on') 
+#              or is_state('or is_state('binary_sensor.motion_2', 'on')', 'on')  }}
+#         delay_off:
+#           minutes: 60
+
+# - platform: 'bayesian'
+#   name: 'House Motion'
+#   prior: 0.25
+#   probability_threshold: 0.25
+#   observations:
+#   - platform: 'state'
+#     entity_id: 'binary_sensor.dining_room_motion'
+#     prob_given_true: 0.9
+#     to_state: 'off'
+#   - platform: 'state'
+#     entity_id: 'binary_sensor.entryway_motion_2'
+#     prob_given_true: 0.9
+#     to_state: 'off'
+#   - platform: 'state'
+#     entity_id: 'binary_sensor.garage_motion_sensor'
+#     prob_given_true: 0.9
+#     to_state: 'off'
+#   - platform: 'state'
+#     entity_id: 'binary_sensor.kitchen_motion'
+#     prob_given_true: 0.9
+#     to_state: 'off'
+#   - platform: 'state'
+#     entity_id: 'binary_sensor.living_room_motion'
+#     prob_given_true: 0.9
+#     to_state: 'off'

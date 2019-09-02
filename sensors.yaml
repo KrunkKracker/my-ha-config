@@ -1,0 +1,63 @@
+- platform: darksky
+  api_key: !secret darksky_api
+  forecast:
+    - 0
+  hourly_forecast:
+    - 0
+    - 1
+  monitored_conditions:
+    - summary
+    - icon
+    - temperature 
+    - precip_type
+    - wind_speed
+    - wind_gust
+    - nearest_storm_distance
+      
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'     
+
+############################
+##Garbage Schedule example##
+############################
+# - platform: garbage_collection
+#     name: waste
+#     frequency: "weekly"
+#     collection_days:
+#     - fri
+#   - platform: garbage_collection
+#     name: bio-waste
+#     frequency: "odd-weeks"
+#     first_month: "mar"
+#     last_month: "nov"
+#     collection_days: "thu"
+#   - platform: garbage_collection
+#     name: large-waste
+#     frequency: "monthly"
+#     collection_days: "sat"
+#     monthly_day_order_number: 1   
+
+##########################
+##Average sensor example##
+##########################
+#   - platform: average
+#     name: 'Average Temperature'
+#     entities:
+#       - weather.gismeteo
+#       - sensor.owm_temperature
+#       - sensor.dark_sky_temperature
+
+# To measure average temperature over time
+#   - platform: average
+#     name: 'Average Temperature'
+#     duration:
+#       days: 1
+#     entities:
+#       - sensor.gismeteo_temperature 

@@ -1,0 +1,75 @@
+################
+##Light Groups##
+################
+kitchen_lights: 
+  name: Kitchen Lights
+  view: yes
+  entities:
+    - light.kitchen_can_1
+    - light.kitchen_can_2
+    - light.kitchen_can_3
+    - light.kitchen_can_4
+    - light.kitchen_can_5
+    - light.kitchen_can_6
+
+rain_lights: 
+  name: Rain Lights
+  view: yes
+  entities:
+    - light.hue_go_1
+    - light.hue_go_2
+
+ armed_lights: 
+  name: Armed Lights
+  view: yes
+  entities:
+    - light.hue_go_1
+    - light.hue_go_2
+  
+kitchen_night_lights:
+  name: Kitchen Night Lights
+  view: yes
+  entities:  
+    - light.kitchen_can_1
+    - light.kitchen_can_3
+
+night_security_lights:
+  name: Night Security Lights
+  view: yes
+  entities:  
+    - light.coach
+    - light.lanai
+
+#################
+##Sensor groups##
+#################
+exterior_windows:
+  name: Exterior windows 
+  view: yes
+  all: false
+  entities:
+    - binary_sensor.window_ava
+    - binary_sensor.window_dining
+    - binary_sensor.window_gwens
+    - binary_sensor.window_kids_bathroom
+    - binary_sensor.window_left_master
+    - binary_sensor.window_right_master
+    - binary_sensor.window_wyatts
+
+exterior_doors:
+  name: Exterior doors 
+  view: yes
+  all: false
+  entities:
+    - binary_sensor.door_front
+    - binary_sensor.door_slider
+    
+house_motion:
+  name: House Motion
+  view: yes
+  all: false
+  entities:
+    - binary_sensor.kitchen_motion
+    - binary_sensor.living_room_motion
+    - binary_sensor.garage_motion_sensor
+    - binary_sensor.dining_room_motion

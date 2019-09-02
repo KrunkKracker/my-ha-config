@@ -1,0 +1,15 @@
+secrets.yaml
+known_devices.yaml
+OZW_Log.txt
+customize.yaml
+googlecloud.json
+home-assistant.log
+home-assistant_v2.db
+skybell_cache.pickle
+*.mp3
+*.json
+/deps
+/tts
+ozw_config/
+.cloud
+.storage

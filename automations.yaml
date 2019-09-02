@@ -1,0 +1,85 @@
+###########################################################   
+#                       ALARM AUTOMATIONS                 #
+###########################################################
+
+
+###########################################################
+#                     ALARM NOTIFICATIONS                 #
+###########################################################
+
+# - alias: 'Send notification when alarm is Disarmed'
+#   trigger:
+#     - platform: state
+#       entity_id: alarm_control_panel.home_alarm
+#       to: 'disarmed'
+#   action:
+#     - service: notify.pushover
+#       data_template:
+#         message: "ALARM! The alarm is Disarmed at {{ states('sensor.time') }}"
+        
+# ###########################################################
+
+# - alias: 'Send notification when alarm is in pending status'
+#   trigger:
+#     - platform: state
+#       entity_id: alarm_control_panel.home_alarm
+#       to: 'pending'
+#   action:
+#     - service: notify.pushover
+#       data_template:
+#         message: "ALARM! The alarm is in pending status at {{ states('sensor.time') }}"
+        
+# ###########################################################
+
+# - alias: 'Send notification when alarm is Armed in Home mode'
+#   trigger:
+#     - platform: state
+#       entity_id: alarm_control_panel.home_alarm
+#       to: 'armed_home'
+#   action:
+#     - service: notify.pushover
+#       data_template:
+#         # Using multi-line notation allows for easier quoting
+#         message: >
+#           ALARM! The alarm is armed in Home mode {{ states('sensor.time') }} 
+          
+# ###########################################################
+
+# - alias: 'Send notification when alarm is Armed in Away mode'
+#   trigger:
+#     - platform: state
+#       entity_id: alarm_control_panel.home_alarm
+#       to: 'armed_away'
+#   action:
+#     - service: notify.pushover
+#       data_template:
+#         message: "ALARM! The alarm is armed in Away mode {{ states('sensor.time') }}"
+        
+# ###########################################################
+
+# - alias: 'Send notification when alarm triggered'
+#   trigger:
+#     - platform: state
+#       entity_id: alarm_control_panel.ha_alarm
+#       to: 'triggered'
+#   action:
+#     - service: notify.pushover
+#       data:
+#         message: "ALARM! The alarm has been triggered"        
+        
+# ###########################################################
+# #                       ALARM TRIGGERS                    #
+# ###########################################################
+
+# - alias: 'Trigger alarm while armed away'
+#   trigger:
+#     - platform: state
+#       entity_id: binary_sensor.front_door_contact
+#       to: 'open'
+#   condition:
+#     - condition: state
+#       entity_id: alarm_control_panel.ha_alarm
+#       state: armed_away
+#   action:
+#     service: alarm_control_panel.alarm_trigger
+#     entity_id: alarm_control_panel.ha_alarm
