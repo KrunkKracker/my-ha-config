@@ -1,0 +1,1817 @@
+[
+    {
+        "id": "16c964ac.08a67b",
+        "type": "subflow",
+        "name": "Alarm Armed?",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 260,
+                "y": 300,
+                "wires": [
+                    {
+                        "id": "1e02faa7.9739e5"
+                    },
+                    {
+                        "id": "e3dec98.4de6838"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 580,
+                "y": 300,
+                "wires": [
+                    {
+                        "id": "1e02faa7.9739e5",
+                        "port": 0
+                    },
+                    {
+                        "id": "e3dec98.4de6838",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "status": {
+            "x": 500,
+            "y": 200,
+            "wires": [
+                {
+                    "id": "1deaa4e1.f4e48b",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "1e02faa7.9739e5",
+        "type": "api-current-state",
+        "z": "16c964ac.08a67b",
+        "name": "Alarm Armed Home?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "armed_home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e3dec98.4de6838",
+        "type": "api-current-state",
+        "z": "16c964ac.08a67b",
+        "name": "Alarm Armed Away?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "armed_away",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 420,
+        "y": 320,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1deaa4e1.f4e48b",
+        "type": "poll-state",
+        "z": "16c964ac.08a67b",
+        "name": "Alarm state",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "updateinterval": "60",
+        "updateIntervalUnits": "seconds",
+        "outputinitially": false,
+        "outputonchanged": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d6b260aa.de4f6",
+        "type": "subflow",
+        "name": "Alarm Triggers",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [
+            {
+                "x": 320,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "63fdfe42.4a4aa",
+                        "port": 0
+                    },
+                    {
+                        "id": "eaea2f0d.129f3",
+                        "port": 0
+                    },
+                    {
+                        "id": "3d1df914.299db6",
+                        "port": 0
+                    },
+                    {
+                        "id": "a496135e.c6b04",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "status": {
+            "x": 320,
+            "y": 220,
+            "wires": [
+                {
+                    "id": "63fdfe42.4a4aa",
+                    "port": 0
+                },
+                {
+                    "id": "eaea2f0d.129f3",
+                    "port": 0
+                },
+                {
+                    "id": "3d1df914.299db6",
+                    "port": 0
+                },
+                {
+                    "id": "a496135e.c6b04",
+                    "port": 0
+                },
+                {
+                    "id": "63fdfe42.4a4aa",
+                    "port": 1
+                },
+                {
+                    "id": "eaea2f0d.129f3",
+                    "port": 1
+                },
+                {
+                    "id": "3d1df914.299db6",
+                    "port": 1
+                },
+                {
+                    "id": "a496135e.c6b04",
+                    "port": 1
+                }
+            ]
+        }
+    },
+    {
+        "id": "63fdfe42.4a4aa",
+        "type": "server-state-changed",
+        "z": "d6b260aa.de4f6",
+        "name": "Exterior windows",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "group.exterior_windows",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "eaea2f0d.129f3",
+        "type": "server-state-changed",
+        "z": "d6b260aa.de4f6",
+        "name": "Exterior doors",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "group.exterior_doors",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "3d1df914.299db6",
+        "type": "server-state-changed",
+        "z": "d6b260aa.de4f6",
+        "name": "Garage open",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "cover.door_garage",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "open",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "a496135e.c6b04",
+        "type": "server-state-changed",
+        "z": "d6b260aa.de4f6",
+        "name": "Garage opening",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "cover.door_garage",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "opening",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 100,
+        "y": 220,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "5633538f.2e3cac",
+        "type": "subflow",
+        "name": "House Alarm Triggered",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "be9d9e7b.9d3c5"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "status": {
+            "x": 260,
+            "y": 220,
+            "wires": [
+                {
+                    "id": "16f90e7b.81e822",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "b061a2b5.6551f",
+        "type": "api-call-service",
+        "z": "5633538f.2e3cac",
+        "name": "Siren on!",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.siren_strobe_alarm",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "d4d2830b.e2511"
+            ]
+        ]
+    },
+    {
+        "id": "d4d2830b.e2511",
+        "type": "stoptimer",
+        "z": "5633538f.2e3cac",
+        "duration": "2",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "2min",
+        "x": 510,
+        "y": 40,
+        "wires": [
+            [
+                "fe6b7f35.b26e4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fe6b7f35.b26e4",
+        "type": "api-call-service",
+        "z": "5633538f.2e3cac",
+        "name": "Siren off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.siren_strobe_alarm",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 640,
+        "y": 40,
+        "wires": [
+            [
+                "9f609468.4e0fa8"
+            ]
+        ]
+    },
+    {
+        "id": "4e2e6cc9.e0dcb4",
+        "type": "api-current-state",
+        "z": "5633538f.2e3cac",
+        "name": "Siren still on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.siren_strobe_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 940,
+        "y": 40,
+        "wires": [
+            [
+                "95ce5c4b.8060a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "95ce5c4b.8060a",
+        "type": "api-call-service",
+        "z": "5633538f.2e3cac",
+        "name": "Turn siren off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.siren_strobe_alarm",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 1110,
+        "y": 40,
+        "wires": [
+            [
+                "4e2e6cc9.e0dcb4"
+            ]
+        ]
+    },
+    {
+        "id": "9f609468.4e0fa8",
+        "type": "delay",
+        "z": "5633538f.2e3cac",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 770,
+        "y": 40,
+        "wires": [
+            [
+                "4e2e6cc9.e0dcb4"
+            ]
+        ]
+    },
+    {
+        "id": "be9d9e7b.9d3c5",
+        "type": "api-current-state",
+        "z": "5633538f.2e3cac",
+        "name": "Alarm Triggered?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "triggered",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "b061a2b5.6551f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "16f90e7b.81e822",
+        "type": "poll-state",
+        "z": "5633538f.2e3cac",
+        "name": "Alarm state",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "updateinterval": "60",
+        "updateIntervalUnits": "seconds",
+        "outputinitially": false,
+        "outputonchanged": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1fd9a5a.e266d5a",
+        "type": "subflow",
+        "name": "House disarmed",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "18b037a5.8af298"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "status": {
+            "x": 240,
+            "y": 280,
+            "wires": [
+                {
+                    "id": "beadb62d.040548",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "60e58978.406f98",
+        "type": "api-call-service",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Turn off armed lights",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.armed_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 420,
+        "y": 40,
+        "wires": [
+            [
+                "81bf49f3.7ff1d8"
+            ]
+        ]
+    },
+    {
+        "id": "427a1ecc.1f1a1",
+        "type": "api-call-service",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Say \"House is disarmed.\"",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "tts",
+        "service": "google_cloud_say",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"message\":\"The house is disarmed.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 610,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "889b9d54.7f9bc",
+        "type": "api-call-service",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Set volume 30%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"volume_level\":0.3}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "427a1ecc.1f1a1"
+            ]
+        ]
+    },
+    {
+        "id": "18b037a5.8af298",
+        "type": "api-current-state",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Disarmed?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "disarmed",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "60e58978.406f98",
+                "889b9d54.7f9bc"
+            ],
+            [
+                "59dff7bc.14bfc8"
+            ]
+        ]
+    },
+    {
+        "id": "29735e3d.2afc82",
+        "type": "api-call-service",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Turn siren off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.alarm_siren",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "c4abe81e.81b3c8"
+            ]
+        ]
+    },
+    {
+        "id": "59dff7bc.14bfc8",
+        "type": "api-current-state",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Siren on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.alarm_siren",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "29735e3d.2afc82"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "30266e8.5aebd92",
+        "type": "api-current-state",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Siren still on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "switch.alarm_siren",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 840,
+        "y": 220,
+        "wires": [
+            [
+                "b5884a3.ff189b8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b5884a3.ff189b8",
+        "type": "api-call-service",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Turn siren off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "switch",
+        "service": "turn_off",
+        "entityId": "switch.alarm_siren",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 1010,
+        "y": 220,
+        "wires": [
+            [
+                "30266e8.5aebd92"
+            ]
+        ]
+    },
+    {
+        "id": "d17da3b2.7d0e1",
+        "type": "api-call-service",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Turn off armed lights",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.armed_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 1000,
+        "y": 40,
+        "wires": [
+            [
+                "a9420ee7.25479"
+            ]
+        ]
+    },
+    {
+        "id": "a9420ee7.25479",
+        "type": "api-current-state",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Armed lights still on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.armed_lights",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 780,
+        "y": 40,
+        "wires": [
+            [
+                "d17da3b2.7d0e1"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "81bf49f3.7ff1d8",
+        "type": "delay",
+        "z": "1fd9a5a.e266d5a",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 590,
+        "y": 40,
+        "wires": [
+            [
+                "a9420ee7.25479"
+            ]
+        ]
+    },
+    {
+        "id": "c4abe81e.81b3c8",
+        "type": "delay",
+        "z": "1fd9a5a.e266d5a",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "30266e8.5aebd92"
+            ]
+        ]
+    },
+    {
+        "id": "beadb62d.040548",
+        "type": "poll-state",
+        "z": "1fd9a5a.e266d5a",
+        "name": "Alarm state",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "updateinterval": "60",
+        "updateIntervalUnits": "seconds",
+        "outputinitially": false,
+        "outputonchanged": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 130,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9dcb285.9aa2d",
+        "type": "subflow",
+        "name": "Armed away",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 20,
+                "wires": [
+                    {
+                        "id": "4cff3e55.d944a"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "status": {
+            "x": 220,
+            "y": 180,
+            "wires": [
+                {
+                    "id": "fd717a41.6e2068",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "4cff3e55.d944a",
+        "type": "api-current-state",
+        "z": "f9dcb285.9aa2d",
+        "name": "Armed away?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "armed_away",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 160,
+        "y": 20,
+        "wires": [
+            [
+                "24633a12.833e16",
+                "999d7380.2df12"
+            ],
+            [
+                "9d456500.6376b8"
+            ]
+        ]
+    },
+    {
+        "id": "6a819945.6aaf88",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "GH say \"The alarm is armed away.\"",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "tts",
+        "service": "google_cloud_say",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"message\":\"The house is armed away.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 660,
+        "y": 80,
+        "wires": [
+            [
+                "91ddf812.ac5518"
+            ]
+        ]
+    },
+    {
+        "id": "999d7380.2df12",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "Set volume 70%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"volume_level\":0.7}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "6a819945.6aaf88"
+            ]
+        ]
+    },
+    {
+        "id": "84d846f0.04d2a8",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "GH say \"The alarm was not set.\"",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "tts",
+        "service": "google_cloud_say",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"message\":\"The alarm failed to arm.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 650,
+        "y": 260,
+        "wires": [
+            [
+                "40a02705.c0da08"
+            ]
+        ]
+    },
+    {
+        "id": "9d456500.6376b8",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "Set volume 70%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"volume_level\":0.7}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 400,
+        "y": 260,
+        "wires": [
+            [
+                "84d846f0.04d2a8"
+            ]
+        ]
+    },
+    {
+        "id": "24633a12.833e16",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "Armed lights on, 15%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.armed_lights",
+        "data": "{\"brightness_pct\":15,\"transition\":1.5,\"rgb_color\":[255,0,0]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 420,
+        "y": 20,
+        "wires": [
+            [
+                "80bf2f1e.92bc9"
+            ]
+        ]
+    },
+    {
+        "id": "80bf2f1e.92bc9",
+        "type": "delay",
+        "z": "f9dcb285.9aa2d",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 590,
+        "y": 20,
+        "wires": [
+            [
+                "2ab9669c.39d62a"
+            ]
+        ]
+    },
+    {
+        "id": "4d36061a.3c5188",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "Armed lights on, 15%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.armed_lights",
+        "data": "{\"brightness_pct\":15,\"transition\":1.5,\"rgb_color\":[255,0,0]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 980,
+        "y": 20,
+        "wires": [
+            [
+                "2ab9669c.39d62a"
+            ]
+        ]
+    },
+    {
+        "id": "2ab9669c.39d62a",
+        "type": "api-current-state",
+        "z": "f9dcb285.9aa2d",
+        "name": "Armed lights on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.armed_lights",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 770,
+        "y": 20,
+        "wires": [
+            [],
+            [
+                "4d36061a.3c5188"
+            ]
+        ]
+    },
+    {
+        "id": "91ddf812.ac5518",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "Armed Away Notification",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "telegram_bot",
+        "service": "send_message",
+        "entityId": "",
+        "data": "{\"message\":\"The house is Armed Away\",\"title\":\"Home Assistant\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 930,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "40a02705.c0da08",
+        "type": "api-call-service",
+        "z": "f9dcb285.9aa2d",
+        "name": "Did not Armed Away Notification",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "telegram_bot",
+        "service": "send_message",
+        "entityId": "",
+        "data": "{\"message\":\"The house was *NOT* Armed Away\",\"title\":\"Home Assistant\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 930,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fd717a41.6e2068",
+        "type": "poll-state",
+        "z": "f9dcb285.9aa2d",
+        "name": "Alarm state",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "updateinterval": "60",
+        "updateIntervalUnits": "seconds",
+        "outputinitially": false,
+        "outputonchanged": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 90,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "85d83311.18d58",
+        "type": "subflow",
+        "name": "Armed Home",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 40,
+                "wires": [
+                    {
+                        "id": "ab8ce01c.2663f"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "status": {
+            "x": 260,
+            "y": 120,
+            "wires": [
+                {
+                    "id": "c88b216.a88efe",
+                    "port": 0
+                }
+            ]
+        }
+    },
+    {
+        "id": "b792253e.5446d8",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Say \"The house is armed.\"",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "tts",
+        "service": "google_cloud_say",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"message\":\"The house is armed.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 660,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "11f66e7d.f79282",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Set volume 40%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"volume_level\":0.4}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 80,
+        "wires": [
+            [
+                "b792253e.5446d8"
+            ]
+        ]
+    },
+    {
+        "id": "ab8ce01c.2663f",
+        "type": "api-current-state",
+        "z": "85d83311.18d58",
+        "name": "Armed Home?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "armed_home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "22e76f32.18911",
+                "5e069a84.ff25d4",
+                "11f66e7d.f79282"
+            ],
+            [
+                "1d5562e0.3290fd"
+            ]
+        ]
+    },
+    {
+        "id": "22e76f32.18911",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Armed lights on, 15%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.armed_lights",
+        "data": "{\"brightness_pct\":15,\"transition\":1.5,\"rgb_color\":[255,0,0]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 460,
+        "y": 20,
+        "wires": [
+            [
+                "c6b70832.a78ac8"
+            ]
+        ]
+    },
+    {
+        "id": "5015c7b3.ac0278",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Say \"The house failed to arm.\"",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "tts",
+        "service": "google_cloud_say",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"message\":\"The house failed to arm.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 670,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d5562e0.3290fd",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Set volume 40%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.living_room_speaker",
+        "data": "{\"volume_level\":0.4}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "5015c7b3.ac0278"
+            ]
+        ]
+    },
+    {
+        "id": "2a1e8eeb.efc3f2",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Armed lights on, 15%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.armed_lights",
+        "data": "{\"brightness_pct\":15,\"transition\":1.5,\"rgb_color\":[255,0,0]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 1020,
+        "y": 20,
+        "wires": [
+            [
+                "cc0c16e4.a21bd8"
+            ]
+        ]
+    },
+    {
+        "id": "cc0c16e4.a21bd8",
+        "type": "api-current-state",
+        "z": "85d83311.18d58",
+        "name": "Armed lights on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.armed_lights",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 810,
+        "y": 20,
+        "wires": [
+            [],
+            [
+                "2a1e8eeb.efc3f2"
+            ]
+        ]
+    },
+    {
+        "id": "c6b70832.a78ac8",
+        "type": "delay",
+        "z": "85d83311.18d58",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 630,
+        "y": 20,
+        "wires": [
+            [
+                "cc0c16e4.a21bd8"
+            ]
+        ]
+    },
+    {
+        "id": "5e069a84.ff25d4",
+        "type": "api-current-state",
+        "z": "85d83311.18d58",
+        "name": "Garage Open?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "open",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "cover.door_garage",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 440,
+        "y": 140,
+        "wires": [
+            [
+                "ef1ae779.81f098"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ef1ae779.81f098",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Close Garage",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "cover",
+        "service": "close_cover",
+        "entityId": "cover.door_garage",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 620,
+        "y": 140,
+        "wires": [
+            [
+                "a81bc712.73dff8"
+            ]
+        ]
+    },
+    {
+        "id": "a81bc712.73dff8",
+        "type": "delay",
+        "z": "85d83311.18d58",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "c54d93bf.c36f5"
+            ]
+        ]
+    },
+    {
+        "id": "c54d93bf.c36f5",
+        "type": "api-current-state",
+        "z": "85d83311.18d58",
+        "name": "Garage Open?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "open",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "cover.door_garage",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 940,
+        "y": 140,
+        "wires": [
+            [
+                "4597a665.4a7bb8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4597a665.4a7bb8",
+        "type": "api-call-service",
+        "z": "85d83311.18d58",
+        "name": "Close Garage",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "cover",
+        "service": "close_cover",
+        "entityId": "cover.door_garage",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 1120,
+        "y": 140,
+        "wires": [
+            [
+                "c54d93bf.c36f5"
+            ]
+        ]
+    },
+    {
+        "id": "c88b216.a88efe",
+        "type": "poll-state",
+        "z": "85d83311.18d58",
+        "name": "Alarm state",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "updateinterval": "60",
+        "updateIntervalUnits": "seconds",
+        "outputinitially": false,
+        "outputonchanged": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "halt_if": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "x": 150,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8bc435b.5fa93c8",
+        "type": "tab",
+        "label": "Home Security System",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3db016e3.cb5baa",
+        "type": "server-state-changed",
+        "z": "8bc435b.5fa93c8",
+        "name": "Home Alarm Mode",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "alarm_control_panel.home_alarm",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 1,
+        "output_only_on_state_change": false,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "19007335.65664d"
+            ]
+        ]
+    },
+    {
+        "id": "19007335.65664d",
+        "type": "switch",
+        "z": "8bc435b.5fa93c8",
+        "name": "Filter Alarm Status",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "armed_home",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "armed_away",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "disarmed",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "triggered",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "927a6919.d0c7c8"
+            ],
+            [
+                "edadcdd6.1cc99"
+            ],
+            [
+                "23d3adb9.f6ad12"
+            ],
+            [
+                "de33b9f3.86c878"
+            ]
+        ]
+    },
+    {
+        "id": "855366a3.2c7b48",
+        "type": "comment",
+        "z": "8bc435b.5fa93c8",
+        "name": "From Manual Alarm Panel_______________________________",
+        "info": "",
+        "x": 250,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "100d506a.d0596",
+        "type": "comment",
+        "z": "8bc435b.5fa93c8",
+        "name": "Trigger automation________________________________",
+        "info": "",
+        "x": 230,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "927a6919.d0c7c8",
+        "type": "subflow:85d83311.18d58",
+        "z": "8bc435b.5fa93c8",
+        "name": "Armed Home",
+        "env": [],
+        "x": 590,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "edadcdd6.1cc99",
+        "type": "subflow:f9dcb285.9aa2d",
+        "z": "8bc435b.5fa93c8",
+        "name": "Armed Away",
+        "env": [],
+        "x": 590,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "23d3adb9.f6ad12",
+        "type": "subflow:1fd9a5a.e266d5a",
+        "z": "8bc435b.5fa93c8",
+        "name": "Disarmed",
+        "env": [],
+        "x": 580,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "de33b9f3.86c878",
+        "type": "subflow:5633538f.2e3cac",
+        "z": "8bc435b.5fa93c8",
+        "name": "Triggered",
+        "env": [],
+        "x": 580,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6806cc9d.ad81b4",
+        "type": "subflow:d6b260aa.de4f6",
+        "z": "8bc435b.5fa93c8",
+        "name": "Alarm Triggers",
+        "env": [],
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "32066c8c.69adc4"
+            ]
+        ]
+    },
+    {
+        "id": "32066c8c.69adc4",
+        "type": "subflow:16c964ac.08a67b",
+        "z": "8bc435b.5fa93c8",
+        "name": "",
+        "env": [],
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "52dc1496.50004c"
+            ]
+        ]
+    },
+    {
+        "id": "52dc1496.50004c",
+        "type": "api-call-service",
+        "z": "8bc435b.5fa93c8",
+        "name": "Triggered",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "alarm_control_panel",
+        "service": "alarm_trigger",
+        "entityId": "alarm_control_panel.home_alarm",
+        "data": "{\"code\":\"5849\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 560,
+        "y": 340,
+        "wires": [
+            [
+                "efe5a57a.974318"
+            ]
+        ]
+    },
+    {
+        "id": "efe5a57a.974318",
+        "type": "api-call-service",
+        "z": "8bc435b.5fa93c8",
+        "name": "Alarm Triggered Notification",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "telegram_bot",
+        "service": "send_message",
+        "entityId": "",
+        "data": "{\"message\":\"The alarm has been triggered!\",\"inline_keyboard\":[\"Disarm:/disarm\"]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 800,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
