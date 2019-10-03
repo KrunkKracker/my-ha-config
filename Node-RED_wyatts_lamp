@@ -1,0 +1,499 @@
+[
+    {
+        "id": "32554245.8bc4ce",
+        "type": "tab",
+        "label": "Test Tab 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "4311337.70fc8cc",
+        "type": "inject",
+        "z": "32554245.8bc4ce",
+        "name": "5am",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 05 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "48f0b47e.51c0dc"
+            ]
+        ]
+    },
+    {
+        "id": "48f0b47e.51c0dc",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Wyatt's Lamp Green @ 10%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.wyatts_lamp",
+        "data": "{\"brightness_pct\":10,\"transition\":1.5,\"rgb_color\":[0,128,0]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": true,
+        "x": 300,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b91197eb.e71c08",
+        "type": "comment",
+        "z": "32554245.8bc4ce",
+        "name": "Wyatt's Lamp__________________________________________________________________________________________________",
+        "info": "",
+        "x": 490,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3c13b59c.a9c9ea",
+        "type": "switch",
+        "z": "32554245.8bc4ce",
+        "name": "which button?",
+        "property": "payload.event.device_ieee",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "28:6d:97:00:01:08:59:e2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 260,
+        "y": 100,
+        "wires": [
+            [
+                "51d26a02.05fb64"
+            ]
+        ]
+    },
+    {
+        "id": "6d6a11d1.63784",
+        "type": "server-events",
+        "z": "32554245.8bc4ce",
+        "name": "zha_event",
+        "server": "26956a45.92d866",
+        "event_type": "zha_event",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "3c13b59c.a9c9ea"
+            ]
+        ]
+    },
+    {
+        "id": "51d26a02.05fb64",
+        "type": "time-range-switch",
+        "z": "32554245.8bc4ce",
+        "name": "9p to 5a",
+        "lat": "27.918805",
+        "lon": "-81.95932",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 420,
+        "y": 100,
+        "wires": [
+            [
+                "89cd596b.60ac88"
+            ],
+            [
+                "2ec3ffee.8a7d5"
+            ]
+        ]
+    },
+    {
+        "id": "89cd596b.60ac88",
+        "type": "switch",
+        "z": "32554245.8bc4ce",
+        "name": "Wyatt's Bedroom Button",
+        "property": "payload.event.command",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "button_single",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button_double",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button_hold",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "9a00c9cc.628ad8",
+                "6d9956d5.1c1b48"
+            ],
+            [
+                "9a00c9cc.628ad8",
+                "b8c10447.f8a608"
+            ],
+            [
+                "9a00c9cc.628ad8"
+            ]
+        ]
+    },
+    {
+        "id": "2ec3ffee.8a7d5",
+        "type": "switch",
+        "z": "32554245.8bc4ce",
+        "name": "Wyatt's Bedroom Button",
+        "property": "payload.event.command",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "button_single",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button_double",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "button_hold",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 3,
+        "x": 190,
+        "y": 320,
+        "wires": [
+            [
+                "9a00c9cc.628ad8",
+                "5f631453.e23c2c"
+            ],
+            [
+                "83481449.0a7a68"
+            ],
+            [
+                "ecc32966.946238",
+                "5f631453.e23c2c"
+            ]
+        ]
+    },
+    {
+        "id": "83481449.0a7a68",
+        "type": "api-current-state",
+        "z": "32554245.8bc4ce",
+        "name": "Wyatt's lamp on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.wyatts_lamp",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 670,
+        "y": 220,
+        "wires": [
+            [
+                "ba7dee30.3228e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ba7dee30.3228e",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Turn off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.wyatts_lamp",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 860,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5835df9.a7f2f",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Cycle",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.wyatts_lamp",
+        "data": "{\t   \"brightness_pct\": 100,\t   \"transition\": 1,\t   \"rgb_color\": payload\t}",
+        "dataType": "jsonata",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1030,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a00c9cc.628ad8",
+        "type": "change",
+        "z": "32554245.8bc4ce",
+        "name": "reset",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "ecc32966.946238"
+            ]
+        ]
+    },
+    {
+        "id": "ecc32966.946238",
+        "type": "trigger",
+        "z": "32554245.8bc4ce",
+        "op1": "",
+        "op2": "",
+        "op1type": "pay",
+        "op2type": "pay",
+        "duration": "-3",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "loop",
+        "x": 730,
+        "y": 340,
+        "wires": [
+            [
+                "5f631453.e23c2c"
+            ]
+        ]
+    },
+    {
+        "id": "5f631453.e23c2c",
+        "type": "function",
+        "z": "32554245.8bc4ce",
+        "name": "Color Change",
+        "func": "// Get the saved index value or set it zero\nlet index = context.get(\"index\") || 0;\n\n// Array of colors to cycle through\nconst colors = [\n    [0,0,0], // White\n    [139,0,0], // Dark Red\n    [255,20,147], // Deep Pink\n    [0,100,0], // Dark Green\n    [139,0,139], // Dark Magenta\n    [0,0,139], // Dark Blue\n    [0,139,139], // Dark Cyan\n    [255,140,0] // Dark Orange\n];\n\n// if the index value is highier than array length reset back to zero\nif(index >= colors.length) {\n    index = 0;\n}\n\n// send the color value as msg.payload\nmsg.payload = colors[index++];\n\n// save new index value\ncontext.set(\"index\", index);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 300,
+        "wires": [
+            [
+                "c5835df9.a7f2f"
+            ]
+        ]
+    },
+    {
+        "id": "4117a7e6.2e6e78",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Turn on red, 10%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.wyatts_lamp",
+        "data": "{\"brightness_pct\":10,\"transition\":3,\"rgb_color\":[255,0,0]}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f15d23de.61e16",
+        "type": "inject",
+        "z": "32554245.8bc4ce",
+        "name": "9pm",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 21 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 710,
+        "y": 140,
+        "wires": [
+            [
+                "9a00c9cc.628ad8",
+                "f34c8ce4.d3512"
+            ]
+        ]
+    },
+    {
+        "id": "f680ac8d.9e60a",
+        "type": "api-current-state",
+        "z": "32554245.8bc4ce",
+        "name": "Wyatt's lamp off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.wyatts_lamp",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 670,
+        "y": 180,
+        "wires": [
+            [
+                "4117a7e6.2e6e78"
+            ],
+            [
+                "4117a7e6.2e6e78"
+            ]
+        ]
+    },
+    {
+        "id": "6d9956d5.1c1b48",
+        "type": "delay",
+        "z": "32554245.8bc4ce",
+        "name": "200ms",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "f680ac8d.9e60a"
+            ]
+        ]
+    },
+    {
+        "id": "b8c10447.f8a608",
+        "type": "delay",
+        "z": "32554245.8bc4ce",
+        "name": "200ms",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "83481449.0a7a68"
+            ]
+        ]
+    },
+    {
+        "id": "f34c8ce4.d3512",
+        "type": "delay",
+        "z": "32554245.8bc4ce",
+        "name": "200ms",
+        "pauseType": "delay",
+        "timeout": "200",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 870,
+        "y": 140,
+        "wires": [
+            [
+                "4117a7e6.2e6e78"
+            ]
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
