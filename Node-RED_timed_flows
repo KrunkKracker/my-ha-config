@@ -1,0 +1,25 @@
+[
+    {
+        "id": "83bdcae1.53e178",
+        "type": "inject",
+        "z": "fdebb431.1a00e8",
+        "name": "10:30pm",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "30 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 220,
+        "wires": [
+            [
+                "65422e67.a34fa",
+                "d67932e8.9b0f3",
+                "1aa3da6b.e910a6",
+                "e7f9713.200eb9"
+            ]
+        ]
+    }
+]
