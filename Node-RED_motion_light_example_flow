@@ -1,0 +1,109 @@
+[
+    {
+        "id": "32554245.8bc4ce",
+        "type": "tab",
+        "label": "Test Tab 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "61325a3.4b33fa4",
+        "type": "server-state-changed",
+        "z": "32554245.8bc4ce",
+        "name": "Entryway Motion",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "binary_sensor.motion_entryway",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 100,
+        "y": 40,
+        "wires": [
+            [
+                "f922d0c2.22c52"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e69f8361.40fd4",
+        "type": "stoptimer",
+        "z": "32554245.8bc4ce",
+        "duration": "16",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "16s",
+        "x": 450,
+        "y": 40,
+        "wires": [
+            [
+                "31a2c21b.e902fe"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "31a2c21b.e902fe",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Entryway Lights Off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 610,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f922d0c2.22c52",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Entryway Lights On",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.entryway",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 290,
+        "y": 40,
+        "wires": [
+            [
+                "e69f8361.40fd4"
+            ]
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
