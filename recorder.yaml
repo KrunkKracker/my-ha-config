@@ -1,0 +1,15 @@
+purge_keep_days: 5
+exclude:
+    domains:
+      - updater
+      - media_player
+      - zha
+      - zwave
+    entities:
+      - sun.sun 
+      - sensor.last_boot 
+      - sensor.date
+      - binary_sensor.entryway_motion_broken
+      - binary_sensor.kitchen_motion_sensor_broken
+      - light.entryway_light_addon
+      - sensor.hacs
