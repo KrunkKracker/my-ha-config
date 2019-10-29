@@ -8,12 +8,28 @@
   monitored_conditions:
     - summary
     - icon
-    - temperature 
     - precip_type
+    - precip_intensity
+    - precip_probability
+    - precip_intensity_max
+    - temperature
+    - apparent_temperature 
     - wind_speed
     - wind_gust
+    - wind_bearing
+    - cloud_cover
+    - humidity
+    - minutely_summary
+    - hourly_summary
+    - daily_summary
+    - temperature_high
+    - temperature_low
+    - sunrise_time
+    - sunset_time
     - nearest_storm_distance
-      
+    - nearest_storm_bearing
+    - alerts 
+
 - platform: time_date
   display_options:
     - 'time'
@@ -24,40 +40,23 @@
     - 'time_utc'
     - 'beat'     
 
-############################
-##Garbage Schedule example##
-############################
-# - platform: garbage_collection
-#     name: waste
-#     frequency: "weekly"
-#     collection_days:
-#     - fri
-#   - platform: garbage_collection
-#     name: bio-waste
-#     frequency: "odd-weeks"
-#     first_month: "mar"
-#     last_month: "nov"
-#     collection_days: "thu"
-#   - platform: garbage_collection
-#     name: large-waste
-#     frequency: "monthly"
-#     collection_days: "sat"
-#     monthly_day_order_number: 1   
+- platform: mqtt
+  name: "Node RED"
+  state_topic: "checkIn/nodeRED"
+  expire_after: 300
 
-##########################
-##Average sensor example##
-##########################
-#   - platform: average
-#     name: 'Average Temperature'
-#     entities:
-#       - weather.gismeteo
-#       - sensor.owm_temperature
-#       - sensor.dark_sky_temperature
+- platform: here_travel_time
+  name: Justin to Justin's Work
+  route_mode: fastest
+  app_id: "J28BOeSwTNtkPs7Ahx6G"
+  app_code: "9Mn4WptP7fCURQEIKNSG9g"
+  origin_entity_id: device_tracker.life360_justin
+  destination_entity_id: zone.watson_clinic_wcpc
 
-# To measure average temperature over time
-#   - platform: average
-#     name: 'Average Temperature'
-#     duration:
-#       days: 1
-#     entities:
-#       - sensor.gismeteo_temperature 
+- platform: here_travel_time
+  name: Justin to Home
+  route_mode: fastest
+  app_id: "J28BOeSwTNtkPs7Ahx6G"
+  app_code: "9Mn4WptP7fCURQEIKNSG9g"
+  origin_entity_id: device_tracker.life360_justin
+  destination_entity_id: zone.home  
