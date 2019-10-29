@@ -1,41 +1,62 @@
 default_config:
 homeassistant:
+  # auth_providers:
+  #   - type: trusted_networks
+  #     trusted_networks:
+  #       - 192.168.1.0/24
   customize: !include customize.yaml
 frontend:
-  themes: !include themes.yaml
-discovery:  
+  themes: !include_dir_merge_named themes
+discovery:
+  ignore:
+    - igd
+logger: !include logger.yaml
 
-##################
-# Text to speech #
-##################
+
+###############################################
+#                Text to speech               #
+###############################################
 tts:
-  - platform: amazon_polly
-    aws_access_key_id: !secret polly_key_id 
-    aws_secret_access_key: !secret polly_access_key 
-    voice: Joanna
-
   - platform: google_cloud
     key_file: googlecloud.json
     voice: en-US-Wavenet-D
     profiles:
       - medium-bluetooth-speaker-class-device
       - small-bluetooth-speaker-class-device  
- 
-  - platform: google_translate
-  
-  - platform: watson_tts
-    watson_apikey: !secret watson_api
 
-################  
-# Integrations #
-################ 
+  - platform: google_translate
+
+
+################################################    
+#                 Integrations                 #
+################################################   
 skybell:
   username: !secret skybell_username
   password: !secret skybell_password
+  
+panel_custom:
+  - name: zwavegraph2
+    sidebar_title: Z-Wave Graph
+    sidebar_icon: mdi:access-point-network
+    url_path: zwave
 
-############
-# Includes #
-############    
+telegram_bot:
+  - platform: broadcast
+    api_key: !secret telegram_bot_key
+    allowed_chat_ids: !secret telegram_bot_main_chat_id
+    
+device_tracker:
+  - platform: nmap_tracker
+    hosts: 192.168.1.0/24
+    home_interval: 10
+    exclude: 192.168.1.171
+    consider_home: 240
+    new_device_defaults:
+      track_new_devices: false
+
+################################################ 
+#                   Includes                   #
+################################################ 
 hacs: !include hacs.yaml      
 notify: !include notify.yaml  
 alarm_control_panel: !include alarm.yaml
@@ -48,4 +69,7 @@ remote: !include remotes.yaml
 weather: !include weather.yaml
 camera: !include cameras.yaml
 life360: !include life360.yaml
-scene: !include scenes.yaml
+proximity: !include proximity.yaml
+zone: !include zones.yaml
+recorder: !include recorder.yaml
+input_boolean: !include input_boolean.yaml
