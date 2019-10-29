@@ -3,3 +3,8 @@
   platform: pushover
   api_key: !secret pushover_api
   user_key: !secret pushover_user
+
+#Telegram Notifications
+- name: telegram
+  platform: telegram
+  chat_id: !secret telegram_bot_main_chat_id
