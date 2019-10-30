@@ -1,0 +1,248 @@
+[
+    {
+        "id": "ab0fe8ba.b1c278",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Entryway Lights on (10%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.entryway",
+        "data": "{\"brightness_pct\":16, \"transition\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 710,
+        "y": 200,
+        "wires": [
+            [
+                "4f6ddaa1.794bf4"
+            ]
+        ]
+    },
+    {
+        "id": "b406615e.46ce7",
+        "type": "comment",
+        "z": "76d371d4.45eeb",
+        "name": "2. (Below) If it's dark out, turn on the Entryway Lights lights to 16% for 5 seconds. Turns it off if left on for more than 3 minutes with no motion._________________________________________________________",
+        "info": "",
+        "x": 780,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "4f6ddaa1.794bf4",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "25",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "off",
+        "name": "25sec",
+        "x": 930,
+        "y": 200,
+        "wires": [
+            [],
+            [
+                "5eec5d4b.b049c4"
+            ]
+        ]
+    },
+    {
+        "id": "5eec5d4b.b049c4",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Entryway lights off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.entryway",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 1130,
+        "y": 260,
+        "wires": [
+            [
+                "5ae6ac4f.d301f4"
+            ]
+        ]
+    },
+    {
+        "id": "33588c46.7eae64",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Entryway Lights on (100%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.entryway",
+        "data": "{\"brightness_pct\":100, \"transition\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 720,
+        "y": 260,
+        "wires": [
+            [
+                "b993e21c.a1b33"
+            ]
+        ]
+    },
+    {
+        "id": "727a5840.2b0568",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Entryway Motion Sensor",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "sensor.entryway_burglar",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "8",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 210,
+        "y": 200,
+        "wires": [
+            [
+                "d8fc0824.d9e708",
+                "6f421274.4da74c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f0a3e9d.428a918",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Entryway light off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.entryway",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1450,
+        "y": 200,
+        "wires": [
+            [],
+            [
+                "5eec5d4b.b049c4"
+            ]
+        ]
+    },
+    {
+        "id": "5ae6ac4f.d301f4",
+        "type": "delay",
+        "z": "76d371d4.45eeb",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "11",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 1290,
+        "y": 200,
+        "wires": [
+            [
+                "f0a3e9d.428a918"
+            ]
+        ]
+    },
+    {
+        "id": "d8fc0824.d9e708",
+        "type": "time-range-switch",
+        "z": "76d371d4.45eeb",
+        "name": "Sunset to 9:30p",
+        "lat": "11.11111",
+        "lon": "-11.11111",
+        "startTime": "sunset",
+        "endTime": "21:30",
+        "startOffset": "",
+        "endOffset": 0,
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "33588c46.7eae64"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "6f421274.4da74c",
+        "type": "time-range-switch",
+        "z": "76d371d4.45eeb",
+        "name": "9:30p to Sunrise",
+        "lat": "11.11111",
+        "lon": "-11.11111",
+        "startTime": "21:30",
+        "endTime": "sunrise",
+        "startOffset": "",
+        "endOffset": 0,
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "ab0fe8ba.b1c278"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b993e21c.a1b33",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "60",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "off",
+        "name": "60sec",
+        "x": 930,
+        "y": 260,
+        "wires": [
+            [],
+            [
+                "5eec5d4b.b049c4"
+            ]
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
