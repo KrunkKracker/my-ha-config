@@ -1,0 +1,1296 @@
+[
+    {
+        "id": "c1db10c0.8733e",
+        "type": "subflow",
+        "name": "Close garage if open",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 20,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "9e0023a7.7b88"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": []
+    },
+    {
+        "id": "9e0023a7.7b88",
+        "type": "api-current-state",
+        "z": "c1db10c0.8733e",
+        "name": "Garage Door Open?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "open",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "cover.door_garage",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "816bf509.a947d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "816bf509.a947d8",
+        "type": "api-call-service",
+        "z": "c1db10c0.8733e",
+        "name": "Close the Garage",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "cover",
+        "service": "close_cover",
+        "entityId": "cover.door_garage",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "d01a0936.426558"
+            ]
+        ]
+    },
+    {
+        "id": "d01a0936.426558",
+        "type": "delay",
+        "z": "c1db10c0.8733e",
+        "name": "40sec",
+        "pauseType": "delay",
+        "timeout": "40",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "11",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "82aed7a2.15fbb8"
+            ]
+        ]
+    },
+    {
+        "id": "82aed7a2.15fbb8",
+        "type": "api-current-state",
+        "z": "c1db10c0.8733e",
+        "name": "Garage Door Open?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "open",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "cover.door_garage",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 760,
+        "y": 200,
+        "wires": [
+            [
+                "816bf509.a947d8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "583b5c28.942304",
+        "type": "subflow",
+        "name": "Lanai, Coach, Entryway lights off?",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 240,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "126cbf5f.894661"
+                    },
+                    {
+                        "id": "e51a6444.ab76a8"
+                    },
+                    {
+                        "id": "b1150990.a46b88"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 640,
+                "y": 240,
+                "wires": [
+                    {
+                        "id": "e51a6444.ab76a8",
+                        "port": 1
+                    },
+                    {
+                        "id": "126cbf5f.894661",
+                        "port": 1
+                    },
+                    {
+                        "id": "b1150990.a46b88",
+                        "port": 1
+                    }
+                ]
+            }
+        ],
+        "env": []
+    },
+    {
+        "id": "e51a6444.ab76a8",
+        "type": "api-current-state",
+        "z": "583b5c28.942304",
+        "name": "Coach lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.coach",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "126cbf5f.894661",
+        "type": "api-current-state",
+        "z": "583b5c28.942304",
+        "name": "Lanai lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.lanai",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 440,
+        "y": 220,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "b1150990.a46b88",
+        "type": "api-current-state",
+        "z": "583b5c28.942304",
+        "name": "Entryway lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.entryway",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "346b7347.d6837c",
+        "type": "subflow",
+        "name": "Exterior Lights off",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 120,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "142e313.f576ecf"
+                    },
+                    {
+                        "id": "16ba2355.69e85d"
+                    },
+                    {
+                        "id": "1344e9ab.561546"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": []
+    },
+    {
+        "id": "142e313.f576ecf",
+        "type": "api-current-state",
+        "z": "346b7347.d6837c",
+        "name": "Lanai lights on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.lanai",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 300,
+        "y": 160,
+        "wires": [
+            [
+                "d8df2ca.85ac4d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "16ba2355.69e85d",
+        "type": "api-current-state",
+        "z": "346b7347.d6837c",
+        "name": "Coach lights on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.coach",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 310,
+        "y": 220,
+        "wires": [
+            [
+                "cbfdd573.50cf28"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7ffe7803.5d7488",
+        "type": "api-call-service",
+        "z": "346b7347.d6837c",
+        "name": "Lights off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.lanai, light.coach, light.entryway, light.dining",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 760,
+        "y": 280,
+        "wires": [
+            [
+                "ef6de66f.b9ffe8"
+            ]
+        ]
+    },
+    {
+        "id": "d8df2ca.85ac4d",
+        "type": "api-call-service",
+        "z": "346b7347.d6837c",
+        "name": "Lanai Lights on (100%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.lanai",
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "7ffe7803.5d7488"
+            ]
+        ]
+    },
+    {
+        "id": "cbfdd573.50cf28",
+        "type": "api-call-service",
+        "z": "346b7347.d6837c",
+        "name": "Coach Lights on (100%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.coach",
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "7ffe7803.5d7488"
+            ]
+        ]
+    },
+    {
+        "id": "1344e9ab.561546",
+        "type": "api-call-service",
+        "z": "346b7347.d6837c",
+        "name": "Entryway Lights on (100%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.entryway",
+        "data": "{\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "7ffe7803.5d7488"
+            ]
+        ]
+    },
+    {
+        "id": "ef6de66f.b9ffe8",
+        "type": "delay",
+        "z": "346b7347.d6837c",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 910,
+        "y": 280,
+        "wires": [
+            [
+                "c1ba6c7b.6480b"
+            ]
+        ]
+    },
+    {
+        "id": "c1ba6c7b.6480b",
+        "type": "subflow:583b5c28.942304",
+        "z": "346b7347.d6837c",
+        "name": "",
+        "env": [],
+        "x": 1120,
+        "y": 280,
+        "wires": [
+            [
+                "148f2875.9cdb48",
+                "ef6de66f.b9ffe8"
+            ]
+        ]
+    },
+    {
+        "id": "148f2875.9cdb48",
+        "type": "api-call-service",
+        "z": "346b7347.d6837c",
+        "name": "Lights off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.lanai, light.coach, light.entryway, light.dining",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1360,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a29c58f.87aefa8",
+        "type": "subflow",
+        "name": "Flood light off.",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "c09efa6e.5b5cc8"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": []
+    },
+    {
+        "id": "c09efa6e.5b5cc8",
+        "type": "api-current-state",
+        "z": "a29c58f.87aefa8",
+        "name": "Flood light on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.flood",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "334886c9.e79cca"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "334886c9.e79cca",
+        "type": "api-call-service",
+        "z": "a29c58f.87aefa8",
+        "name": "Flood light off ",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.flood",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 380,
+        "y": 80,
+        "wires": [
+            [
+                "a5714ab9.1a5d68"
+            ]
+        ]
+    },
+    {
+        "id": "d3e2920f.855b",
+        "type": "api-current-state",
+        "z": "a29c58f.87aefa8",
+        "name": "Flood light on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.flood",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 720,
+        "y": 80,
+        "wires": [
+            [
+                "165ac6c2.7bef59"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a5714ab9.1a5d68",
+        "type": "delay",
+        "z": "a29c58f.87aefa8",
+        "name": ".5sec",
+        "pauseType": "delay",
+        "timeout": ".5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 550,
+        "y": 80,
+        "wires": [
+            [
+                "d3e2920f.855b"
+            ]
+        ]
+    },
+    {
+        "id": "165ac6c2.7bef59",
+        "type": "api-call-service",
+        "z": "a29c58f.87aefa8",
+        "name": "Flood light off ",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.flood",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 900,
+        "y": 80,
+        "wires": [
+            [
+                "d3e2920f.855b"
+            ]
+        ]
+    },
+    {
+        "id": "fca9b92b.449d18",
+        "type": "subflow",
+        "name": "Front Porch light off.",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 140,
+                "wires": [
+                    {
+                        "id": "975b25dd.d335a8"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": []
+    },
+    {
+        "id": "60c859bb.701f38",
+        "type": "api-call-service",
+        "z": "fca9b92b.449d18",
+        "name": "Front Porch light off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.front_porch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "c96bb1f6.ff4a7"
+            ]
+        ]
+    },
+    {
+        "id": "975b25dd.d335a8",
+        "type": "api-current-state",
+        "z": "fca9b92b.449d18",
+        "name": "Front porch on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.front_porch",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "60c859bb.701f38"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "2455352f.d96c4a",
+        "type": "api-current-state",
+        "z": "fca9b92b.449d18",
+        "name": "Front Porch light on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.front_porch",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 760,
+        "y": 140,
+        "wires": [
+            [
+                "8278a2df.0a28b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c96bb1f6.ff4a7",
+        "type": "delay",
+        "z": "fca9b92b.449d18",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 570,
+        "y": 140,
+        "wires": [
+            [
+                "2455352f.d96c4a"
+            ]
+        ]
+    },
+    {
+        "id": "8278a2df.0a28b",
+        "type": "api-call-service",
+        "z": "fca9b92b.449d18",
+        "name": "Front porch light off ",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.front_porch",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 970,
+        "y": 140,
+        "wires": [
+            [
+                "2455352f.d96c4a"
+            ]
+        ]
+    },
+    {
+        "id": "4df685db.b408fc",
+        "type": "subflow",
+        "name": "Security Lights On",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 20,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "db877ee7.4b219"
+                    },
+                    {
+                        "id": "6331b553.35c13c"
+                    },
+                    {
+                        "id": "b7e1eb44.2d6be8"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": []
+    },
+    {
+        "id": "db877ee7.4b219",
+        "type": "api-call-service",
+        "z": "4df685db.b408fc",
+        "name": "Coach lights on (40%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.coach",
+        "data": "{\"transition\":3,\"brightness_pct\":40}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 200,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6331b553.35c13c",
+        "type": "api-call-service",
+        "z": "4df685db.b408fc",
+        "name": "Lanai lights on (3%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "debugenabled": false,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.lanai",
+        "data": "{\"transition\":3,\"brightness_pct\":3}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 200,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7e1eb44.2d6be8",
+        "type": "api-call-service",
+        "z": "4df685db.b408fc",
+        "name": "Front porch light on (25%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.front_porch",
+        "data": "{\"transition\":3,\"brightness_pct\":25}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 210,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    },
+    {
+        "id": "6d01bd69.eb5cf4",
+        "type": "switch",
+        "z": "fdebb431.1a00e8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "on",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "off",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 270,
+        "y": 40,
+        "wires": [
+            [
+                "52506023.4d3b2"
+            ],
+            [
+                "73e94319.2b78bc"
+            ]
+        ]
+    },
+    {
+        "id": "da4fc58.6a54638",
+        "type": "bigtimer",
+        "z": "fdebb431.1a00e8",
+        "outtopic": "",
+        "outpayload1": "",
+        "outpayload2": "",
+        "name": "Sunrise - Sunset",
+        "comment": "",
+        "lat": "27.918805",
+        "lon": "-81.866830",
+        "starttime": "5004",
+        "endtime": "5003",
+        "starttime2": 0,
+        "endtime2": 0,
+        "startoff": 0,
+        "endoff": 0,
+        "startoff2": 0,
+        "endoff2": 0,
+        "offs": 0,
+        "outtext1": "on",
+        "outtext2": "off",
+        "timeout": 1440,
+        "sun": true,
+        "mon": true,
+        "tue": true,
+        "wed": true,
+        "thu": true,
+        "fri": true,
+        "sat": true,
+        "jan": true,
+        "feb": true,
+        "mar": true,
+        "apr": true,
+        "may": true,
+        "jun": true,
+        "jul": true,
+        "aug": true,
+        "sep": true,
+        "oct": true,
+        "nov": true,
+        "dec": true,
+        "day1": 0,
+        "month1": 0,
+        "day2": 0,
+        "month2": 0,
+        "day3": 0,
+        "month3": 0,
+        "day4": 0,
+        "month4": 0,
+        "day5": 0,
+        "month5": 0,
+        "day6": 0,
+        "month6": 0,
+        "d1": 0,
+        "w1": 0,
+        "d2": 0,
+        "w2": 0,
+        "d3": 0,
+        "w3": 0,
+        "d4": 0,
+        "w4": 0,
+        "d5": 0,
+        "w5": 0,
+        "d6": 0,
+        "w6": 0,
+        "xday1": 0,
+        "xmonth1": 0,
+        "xday2": 0,
+        "xmonth2": 0,
+        "xday3": 0,
+        "xmonth3": 0,
+        "xday4": 0,
+        "xmonth4": 0,
+        "xday5": 0,
+        "xmonth5": 0,
+        "xday6": 0,
+        "xmonth6": 0,
+        "xd1": 0,
+        "xw1": 0,
+        "xd2": 0,
+        "xw2": 0,
+        "xd3": 0,
+        "xw3": 0,
+        "xd4": 0,
+        "xw4": 0,
+        "xd5": 0,
+        "xw5": 0,
+        "xd6": 0,
+        "xw6": 0,
+        "suspend": false,
+        "random": false,
+        "repeat": true,
+        "atstart": false,
+        "odd": false,
+        "even": false,
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [],
+            [],
+            [
+                "6d01bd69.eb5cf4"
+            ]
+        ]
+    },
+    {
+        "id": "52506023.4d3b2",
+        "type": "subflow:4df685db.b408fc",
+        "z": "fdebb431.1a00e8",
+        "name": "Security Lights On @ sunset",
+        "env": [],
+        "x": 620,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "c6cd1183.0d236",
+        "type": "inject",
+        "z": "fdebb431.1a00e8",
+        "name": "8pm",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "00 20 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "aea9500a.a5d7f"
+            ]
+        ]
+    },
+    {
+        "id": "aea9500a.a5d7f",
+        "type": "api-call-service",
+        "z": "fdebb431.1a00e8",
+        "name": "Set Ecobee 73*",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "climate",
+        "service": "set_temperature",
+        "entityId": "climate.my_ecobee",
+        "data": "{\"temperature\": 73}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 580,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "83bdcae1.53e178",
+        "type": "inject",
+        "z": "fdebb431.1a00e8",
+        "name": "10:30pm",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "0 22 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "65422e67.a34fa",
+                "d67932e8.9b0f3",
+                "e79dcb2b.7f14d8",
+                "211e8eae.7e8b52"
+            ]
+        ]
+    },
+    {
+        "id": "65422e67.a34fa",
+        "type": "subflow:fca9b92b.449d18",
+        "z": "fdebb431.1a00e8",
+        "name": "Front Porch light off.",
+        "env": [],
+        "x": 600,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d67932e8.9b0f3",
+        "type": "subflow:a29c58f.87aefa8",
+        "z": "fdebb431.1a00e8",
+        "name": "Flood light off.",
+        "env": [],
+        "x": 580,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "73e94319.2b78bc",
+        "type": "subflow:346b7347.d6837c",
+        "z": "fdebb431.1a00e8",
+        "name": "Exterior Lights off @ sunrise",
+        "env": [],
+        "x": 620,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "27b94579.c5d11a",
+        "type": "inject",
+        "z": "fdebb431.1a00e8",
+        "name": "5:00am",
+        "topic": "",
+        "payload": "on",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "00 05 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "6a42fa2.8695804",
+                "8e065651.096188"
+            ]
+        ]
+    },
+    {
+        "id": "6a42fa2.8695804",
+        "type": "api-call-service",
+        "z": "fdebb431.1a00e8",
+        "name": "Set Ecobee 75*",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "climate",
+        "service": "set_temperature",
+        "entityId": "climate.my_ecobee",
+        "data": "{\"temperature\": 75}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 580,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7f9713.200eb9",
+        "type": "api-call-service",
+        "z": "fdebb431.1a00e8",
+        "name": "Arm Home",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "alarm_control_panel",
+        "service": "alarm_arm_home",
+        "entityId": "alarm_control_panel.home_alarm",
+        "data": "{\"code\":\"5849\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 770,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8e065651.096188",
+        "type": "api-call-service",
+        "z": "fdebb431.1a00e8",
+        "name": "Disarm Home",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "alarm_control_panel",
+        "service": "alarm_disarm",
+        "entityId": "",
+        "data": "{\"code\":\"5849\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 580,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e1924e4f.99048",
+        "type": "inject",
+        "z": "fdebb431.1a00e8",
+        "name": "Every 30 minutes",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "repeat": "1800",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "6159ef19.33763"
+            ]
+        ]
+    },
+    {
+        "id": "e79dcb2b.7f14d8",
+        "type": "api-current-state",
+        "z": "fdebb431.1a00e8",
+        "name": "Alarm Armed?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "armed_home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [],
+            [
+                "e7f9713.200eb9"
+            ]
+        ]
+    },
+    {
+        "id": "211e8eae.7e8b52",
+        "type": "subflow:c1db10c0.8733e",
+        "z": "fdebb431.1a00e8",
+        "name": "Close garage if open",
+        "env": [],
+        "x": 600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "6159ef19.33763",
+        "type": "time-range-switch",
+        "z": "fdebb431.1a00e8",
+        "name": "11p - 4:30a",
+        "lat": "11.11111",
+        "lon": "-11.11111",
+        "startTime": "23:00",
+        "endTime": "04:30",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 310,
+        "y": 220,
+        "wires": [
+            [
+                "d67932e8.9b0f3",
+                "65422e67.a34fa",
+                "211e8eae.7e8b52",
+                "e79dcb2b.7f14d8"
+            ],
+            []
+        ]
+    }
+]
