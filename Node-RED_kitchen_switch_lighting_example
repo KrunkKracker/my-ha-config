@@ -1,0 +1,145 @@
+[
+    {
+        "id": "32554245.8bc4ce",
+        "type": "tab",
+        "label": "Test Tab 2",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "b3fe5160.adede",
+        "type": "switch",
+        "z": "32554245.8bc4ce",
+        "name": "which button?",
+        "property": "msg.payload.entity_id",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "zwave.switch_kitchen_light_1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "zwave.switch_kitchen_light_2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 580,
+        "y": 240,
+        "wires": [
+            [
+                "d5b390c.bab2a7"
+            ],
+            [
+                "d5b390c.bab2a7"
+            ]
+        ]
+    },
+    {
+        "id": "e244b990.0a19b8",
+        "type": "server-events",
+        "z": "32554245.8bc4ce",
+        "name": "zwave.node_event",
+        "server": "26956a45.92d866",
+        "event_type": "zwave.node_event",
+        "x": 370,
+        "y": 240,
+        "wires": [
+            [
+                "b3fe5160.adede"
+            ]
+        ]
+    },
+    {
+        "id": "d5b390c.bab2a7",
+        "type": "switch",
+        "z": "32554245.8bc4ce",
+        "name": "Kitchen Light Switch 1 & 2",
+        "property": "payload.event.basic_level",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "255",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 810,
+        "y": 240,
+        "wires": [
+            [
+                "92da9f45.c8a77"
+            ],
+            [
+                "18569710.96a6a9"
+            ]
+        ]
+    },
+    {
+        "id": "92da9f45.c8a77",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Kitchen Lights On",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.kitchen_lights",
+        "data": "{\"transition\":1,\"brightness_pct\":100}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "18569710.96a6a9",
+        "type": "api-call-service",
+        "z": "32554245.8bc4ce",
+        "name": "Kitchen Lights Off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.kitchen_lights",
+        "data": "{\"transition\":1}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1050,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
