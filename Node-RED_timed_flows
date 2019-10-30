@@ -2,7 +2,7 @@
     {
         "id": "c1db10c0.8733e",
         "type": "subflow",
-        "name": "Close garage @ 10:30 if open",
+        "name": "Close garage if open",
         "info": "",
         "category": "",
         "in": [
@@ -42,8 +42,7 @@
         "y": 140,
         "wires": [
             [
-                "ebbf4fdd.48b84",
-                "82d0b82c.56a648"
+                "816bf509.a947d8"
             ],
             []
         ]
@@ -64,53 +63,30 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 530,
+        "x": 410,
         "y": 140,
         "wires": [
             [
-                "5cafb488.2c2bbc",
                 "d01a0936.426558"
             ]
-        ]
-    },
-    {
-        "id": "5cafb488.2c2bbc",
-        "type": "api-call-service",
-        "z": "c1db10c0.8733e",
-        "name": "Send Pushover Notification",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "notify",
-        "service": "pushover",
-        "entityId": "",
-        "data": "{\"message\":\"The garage has been closed.\",\"title\":\"Home Assistant\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 780,
-        "y": 100,
-        "wires": [
-            []
         ]
     },
     {
         "id": "d01a0936.426558",
         "type": "delay",
         "z": "c1db10c0.8733e",
-        "name": "20sec",
+        "name": "40sec",
         "pauseType": "delay",
-        "timeout": "20",
+        "timeout": "40",
         "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
+        "rate": "10",
+        "nbRateUnits": "11",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 710,
+        "x": 570,
         "y": 140,
         "wires": [
             [
@@ -137,101 +113,13 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 900,
-        "y": 140,
-        "wires": [
-            [
-                "8dbbcb5.d5baf38"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "8dbbcb5.d5baf38",
-        "type": "api-call-service",
-        "z": "c1db10c0.8733e",
-        "name": "Close the Garage",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "cover",
-        "service": "close_cover",
-        "entityId": "cover.door_garage",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 1110,
-        "y": 140,
-        "wires": [
-            [
-                "82aed7a2.15fbb8"
-            ]
-        ]
-    },
-    {
-        "id": "ebbf4fdd.48b84",
-        "type": "stoptimer",
-        "z": "c1db10c0.8733e",
-        "duration": "5",
-        "units": "Minute",
-        "payloadtype": "num",
-        "payloadval": "0",
-        "name": "5min",
-        "x": 350,
-        "y": 140,
+        "x": 760,
+        "y": 200,
         "wires": [
             [
                 "816bf509.a947d8"
             ],
             []
-        ]
-    },
-    {
-        "id": "8ae94f73.8172c",
-        "type": "api-call-service",
-        "z": "c1db10c0.8733e",
-        "name": "Say \"Closing the garage\"",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "tts",
-        "service": "google_cloud_say",
-        "entityId": "media_player.garage_speaker",
-        "data": "{\"message\":\"The garage will be closing in 5 minutes.\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 590,
-        "y": 180,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "82d0b82c.56a648",
-        "type": "api-call-service",
-        "z": "c1db10c0.8733e",
-        "name": "Set volume 70%",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "media_player",
-        "service": "volume_set",
-        "entityId": "media_player.living_room_speaker",
-        "data": "{\"volume_level\":0.7}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 380,
-        "y": 180,
-        "wires": [
-            [
-                "8ae94f73.8172c"
-            ]
         ]
     },
     {
@@ -550,7 +438,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 890,
+        "x": 910,
         "y": 280,
         "wires": [
             [
@@ -568,7 +456,8 @@
         "y": 280,
         "wires": [
             [
-                "148f2875.9cdb48"
+                "148f2875.9cdb48",
+                "ef6de66f.b9ffe8"
             ]
         ]
     },
@@ -588,12 +477,10 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 1340,
+        "x": 1360,
         "y": 280,
         "wires": [
-            [
-                "c1ba6c7b.6480b"
-            ]
+            []
         ]
     },
     {
@@ -783,7 +670,6 @@
         "y": 140,
         "wires": [
             [
-                "9bfe8d9c.c6443",
                 "c96bb1f6.ff4a7"
             ]
         ]
@@ -813,28 +699,6 @@
             [
                 "60c859bb.701f38"
             ],
-            []
-        ]
-    },
-    {
-        "id": "9bfe8d9c.c6443",
-        "type": "api-call-service",
-        "z": "fca9b92b.449d18",
-        "name": "Send Pushover Notification",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "notify",
-        "service": "pushover",
-        "entityId": "",
-        "data": "{\"message\":\"Turned off the Front Porch light.\",\"title\":\"Home Assistant\"}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 640,
-        "y": 80,
-        "wires": [
             []
         ]
     },
@@ -870,9 +734,9 @@
         "id": "c96bb1f6.ff4a7",
         "type": "delay",
         "z": "fca9b92b.449d18",
-        "name": ".5sec",
+        "name": "1sec",
         "pauseType": "delay",
-        "timeout": ".5",
+        "timeout": "1",
         "timeoutUnits": "seconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -929,6 +793,9 @@
                     },
                     {
                         "id": "6331b553.35c13c"
+                    },
+                    {
+                        "id": "b7e1eb44.2d6be8"
                     }
                 ]
             }
@@ -940,13 +807,13 @@
         "id": "db877ee7.4b219",
         "type": "api-call-service",
         "z": "4df685db.b408fc",
-        "name": "Coach lights on (30%)",
+        "name": "Coach lights on (40%)",
         "server": "26956a45.92d866",
         "version": 1,
         "service_domain": "light",
         "service": "turn_on",
         "entityId": "light.coach",
-        "data": "{\"transition\":3,\"brightness_pct\":30}",
+        "data": "{\"transition\":3,\"brightness_pct\":40}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
@@ -962,13 +829,14 @@
         "id": "6331b553.35c13c",
         "type": "api-call-service",
         "z": "4df685db.b408fc",
-        "name": "Lanai lights on (5%)",
+        "name": "Lanai lights on (3%)",
         "server": "26956a45.92d866",
         "version": 1,
+        "debugenabled": false,
         "service_domain": "light",
         "service": "turn_on",
         "entityId": "light.lanai",
-        "data": "{\"transition\":3,\"brightness_pct\":5}",
+        "data": "{\"transition\":3,\"brightness_pct\":3}",
         "dataType": "json",
         "mergecontext": "",
         "output_location": "",
@@ -976,6 +844,28 @@
         "mustacheAltTags": false,
         "x": 200,
         "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7e1eb44.2d6be8",
+        "type": "api-call-service",
+        "z": "4df685db.b408fc",
+        "name": "Front porch light on (25%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "light.front_porch",
+        "data": "{\"transition\":3,\"brightness_pct\":25}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 210,
+        "y": 200,
         "wires": [
             []
         ]
@@ -1143,7 +1033,7 @@
         "z": "fdebb431.1a00e8",
         "name": "Security Lights On @ sunset",
         "env": [],
-        "x": 480,
+        "x": 620,
         "y": 20,
         "wires": []
     },
@@ -1151,15 +1041,15 @@
         "id": "c6cd1183.0d236",
         "type": "inject",
         "z": "fdebb431.1a00e8",
-        "name": "9pm",
+        "name": "8pm",
         "topic": "",
         "payload": "on",
         "payloadType": "str",
         "repeat": "",
-        "crontab": "00 21 * * *",
+        "crontab": "00 20 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "x": 110,
+        "x": 90,
         "y": 280,
         "wires": [
             [
@@ -1183,7 +1073,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 440,
+        "x": 580,
         "y": 280,
         "wires": [
             []
@@ -1198,17 +1088,17 @@
         "payload": "off",
         "payloadType": "str",
         "repeat": "",
-        "crontab": "30 22 * * *",
+        "crontab": "0 22 * * *",
         "once": false,
         "onceDelay": 0.1,
         "x": 100,
-        "y": 220,
+        "y": 120,
         "wires": [
             [
                 "65422e67.a34fa",
                 "d67932e8.9b0f3",
-                "1aa3da6b.e910a6",
-                "e7f9713.200eb9"
+                "e79dcb2b.7f14d8",
+                "211e8eae.7e8b52"
             ]
         ]
     },
@@ -1218,7 +1108,7 @@
         "z": "fdebb431.1a00e8",
         "name": "Front Porch light off.",
         "env": [],
-        "x": 460,
+        "x": 600,
         "y": 140,
         "wires": []
     },
@@ -1228,7 +1118,7 @@
         "z": "fdebb431.1a00e8",
         "name": "Flood light off.",
         "env": [],
-        "x": 440,
+        "x": 580,
         "y": 100,
         "wires": []
     },
@@ -1238,18 +1128,8 @@
         "z": "fdebb431.1a00e8",
         "name": "Exterior Lights off @ sunrise",
         "env": [],
-        "x": 480,
+        "x": 620,
         "y": 60,
-        "wires": []
-    },
-    {
-        "id": "1aa3da6b.e910a6",
-        "type": "subflow:c1db10c0.8733e",
-        "z": "fdebb431.1a00e8",
-        "name": "Close garage @ 10:30 if open",
-        "env": [],
-        "x": 490,
-        "y": 180,
         "wires": []
     },
     {
@@ -1289,32 +1169,10 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": false,
-        "x": 440,
+        "x": 580,
         "y": 340,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "3f67f188.f9bd2e",
-        "type": "inject",
-        "z": "fdebb431.1a00e8",
-        "name": "12:00am",
-        "topic": "",
-        "payload": "off",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "00 00 * * *",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 100,
-        "y": 100,
-        "wires": [
-            [
-                "d67932e8.9b0f3",
-                "65422e67.a34fa",
-                "1aa3da6b.e910a6"
-            ]
         ]
     },
     {
@@ -1333,7 +1191,7 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 430,
+        "x": 770,
         "y": 220,
         "wires": [
             []
@@ -1355,7 +1213,7 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 440,
+        "x": 580,
         "y": 400,
         "wires": [
             []
@@ -1365,22 +1223,81 @@
         "id": "e1924e4f.99048",
         "type": "inject",
         "z": "fdebb431.1a00e8",
-        "name": "4:00am",
+        "name": "Every 30 minutes",
         "topic": "",
         "payload": "off",
         "payloadType": "str",
-        "repeat": "",
-        "crontab": "00 04 * * *",
+        "repeat": "1800",
+        "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 100,
-        "y": 160,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "6159ef19.33763"
+            ]
+        ]
+    },
+    {
+        "id": "e79dcb2b.7f14d8",
+        "type": "api-current-state",
+        "z": "fdebb431.1a00e8",
+        "name": "Alarm Armed?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "armed_home",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "alarm_control_panel.home_alarm",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [],
+            [
+                "e7f9713.200eb9"
+            ]
+        ]
+    },
+    {
+        "id": "211e8eae.7e8b52",
+        "type": "subflow:c1db10c0.8733e",
+        "z": "fdebb431.1a00e8",
+        "name": "Close garage if open",
+        "env": [],
+        "x": 600,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "6159ef19.33763",
+        "type": "time-range-switch",
+        "z": "fdebb431.1a00e8",
+        "name": "11p - 4:30a",
+        "lat": "11.11111",
+        "lon": "-11.11111",
+        "startTime": "23:00",
+        "endTime": "04:30",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 310,
+        "y": 220,
         "wires": [
             [
                 "d67932e8.9b0f3",
                 "65422e67.a34fa",
-                "1aa3da6b.e910a6"
-            ]
+                "211e8eae.7e8b52",
+                "e79dcb2b.7f14d8"
+            ],
+            []
         ]
     }
 ]
