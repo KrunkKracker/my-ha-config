@@ -41,7 +41,7 @@
             "y": 200,
             "wires": [
                 {
-                    "id": "1deaa4e1.f4e48b",
+                    "id": "c027583d.97c738",
                     "port": 0
                 }
             ]
@@ -100,23 +100,22 @@
         ]
     },
     {
-        "id": "1deaa4e1.f4e48b",
-        "type": "poll-state",
+        "id": "c027583d.97c738",
+        "type": "server-state-changed",
         "z": "16c964ac.08a67b",
         "name": "Alarm state",
         "server": "26956a45.92d866",
         "version": 1,
-        "updateinterval": "60",
-        "updateIntervalUnits": "seconds",
+        "entityidfilter": "alarm_control_panel.home_alarm",
+        "entityidfiltertype": "exact",
         "outputinitially": false,
-        "outputonchanged": false,
-        "entity_id": "alarm_control_panel.home_alarm",
         "state_type": "str",
-        "halt_if": "",
+        "haltifstate": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 1,
-        "x": 390,
+        "output_only_on_state_change": true,
+        "x": 370,
         "y": 200,
         "wires": [
             []
@@ -197,7 +196,7 @@
         "id": "63fdfe42.4a4aa",
         "type": "server-state-changed",
         "z": "d6b260aa.de4f6",
-        "name": "Exterior windows",
+        "name": "Windows",
         "server": "26956a45.92d866",
         "version": 1,
         "entityidfilter": "group.exterior_windows",
@@ -209,7 +208,7 @@
         "halt_if_compare": "is",
         "outputs": 2,
         "output_only_on_state_change": false,
-        "x": 100,
+        "x": 80,
         "y": 40,
         "wires": [
             [],
@@ -305,8 +304,8 @@
         "out": [],
         "env": [],
         "status": {
-            "x": 260,
-            "y": 220,
+            "x": 220,
+            "y": 100,
             "wires": [
                 {
                     "id": "16f90e7b.81e822",
@@ -373,7 +372,7 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": true,
-        "x": 640,
+        "x": 660,
         "y": 40,
         "wires": [
             [
@@ -404,33 +403,9 @@
         "y": 40,
         "wires": [
             [
-                "95ce5c4b.8060a"
+                "fe6b7f35.b26e4"
             ],
             []
-        ]
-    },
-    {
-        "id": "95ce5c4b.8060a",
-        "type": "api-call-service",
-        "z": "5633538f.2e3cac",
-        "name": "Turn siren off",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "light",
-        "service": "turn_off",
-        "entityId": "light.siren_strobe_alarm",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": true,
-        "x": 1110,
-        "y": 40,
-        "wires": [
-            [
-                "4e2e6cc9.e0dcb4"
-            ]
         ]
     },
     {
@@ -438,17 +413,17 @@
         "type": "delay",
         "z": "5633538f.2e3cac",
         "name": "1sec",
-        "pauseType": "delay",
+        "pauseType": "rate",
         "timeout": "1",
         "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
+        "rate": "10",
+        "nbRateUnits": "11",
         "rateUnits": "second",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 770,
+        "x": 790,
         "y": 40,
         "wires": [
             [
@@ -501,8 +476,8 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 1,
-        "x": 130,
-        "y": 220,
+        "x": 90,
+        "y": 100,
         "wires": [
             []
         ]
@@ -516,7 +491,7 @@
         "in": [
             {
                 "x": 40,
-                "y": 140,
+                "y": 60,
                 "wires": [
                     {
                         "id": "18b037a5.8af298"
@@ -527,8 +502,8 @@
         "out": [],
         "env": [],
         "status": {
-            "x": 240,
-            "y": 280,
+            "x": 200,
+            "y": 120,
             "wires": [
                 {
                     "id": "beadb62d.040548",
@@ -554,7 +529,7 @@
         "output_location_type": "none",
         "mustacheAltTags": true,
         "x": 420,
-        "y": 40,
+        "y": 20,
         "wires": [
             [
                 "81bf49f3.7ff1d8"
@@ -578,7 +553,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 610,
-        "y": 160,
+        "y": 120,
         "wires": [
             []
         ]
@@ -600,7 +575,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 400,
-        "y": 160,
+        "y": 120,
         "wires": [
             [
                 "427a1ecc.1f1a1"
@@ -627,7 +602,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 150,
-        "y": 140,
+        "y": 60,
         "wires": [
             [
                 "60e58978.406f98",
@@ -654,8 +629,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": true,
-        "x": 530,
-        "y": 220,
+        "x": 550,
+        "y": 180,
         "wires": [
             [
                 "c4abe81e.81b3c8"
@@ -682,7 +657,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 380,
-        "y": 220,
+        "y": 180,
         "wires": [
             [
                 "29735e3d.2afc82"
@@ -710,60 +685,12 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 840,
-        "y": 220,
+        "y": 240,
         "wires": [
             [
-                "b5884a3.ff189b8"
+                "29735e3d.2afc82"
             ],
             []
-        ]
-    },
-    {
-        "id": "b5884a3.ff189b8",
-        "type": "api-call-service",
-        "z": "1fd9a5a.e266d5a",
-        "name": "Turn siren off",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "switch",
-        "service": "turn_off",
-        "entityId": "switch.alarm_siren",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": true,
-        "x": 1010,
-        "y": 220,
-        "wires": [
-            [
-                "30266e8.5aebd92"
-            ]
-        ]
-    },
-    {
-        "id": "d17da3b2.7d0e1",
-        "type": "api-call-service",
-        "z": "1fd9a5a.e266d5a",
-        "name": "Turn off armed lights",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "light",
-        "service": "turn_off",
-        "entityId": "group.armed_lights",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": true,
-        "x": 1000,
-        "y": 40,
-        "wires": [
-            [
-                "a9420ee7.25479"
-            ]
         ]
     },
     {
@@ -785,11 +712,11 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 780,
-        "y": 40,
+        "x": 760,
+        "y": 80,
         "wires": [
             [
-                "d17da3b2.7d0e1"
+                "60e58978.406f98"
             ],
             []
         ]
@@ -810,7 +737,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 590,
-        "y": 40,
+        "y": 20,
         "wires": [
             [
                 "a9420ee7.25479"
@@ -832,8 +759,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 670,
-        "y": 220,
+        "x": 690,
+        "y": 180,
         "wires": [
             [
                 "30266e8.5aebd92"
@@ -857,8 +784,8 @@
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 1,
-        "x": 130,
-        "y": 280,
+        "x": 90,
+        "y": 120,
         "wires": [
             []
         ]
@@ -989,7 +916,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 650,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "40a02705.c0da08"
@@ -1013,7 +940,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 400,
-        "y": 260,
+        "y": 140,
         "wires": [
             [
                 "84d846f0.04d2a8"
@@ -1068,30 +995,6 @@
         ]
     },
     {
-        "id": "4d36061a.3c5188",
-        "type": "api-call-service",
-        "z": "f9dcb285.9aa2d",
-        "name": "Armed lights on, 15%",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "light",
-        "service": "turn_on",
-        "entityId": "group.armed_lights",
-        "data": "{\"brightness_pct\":15,\"transition\":1.5,\"rgb_color\":[255,0,0]}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": true,
-        "x": 980,
-        "y": 20,
-        "wires": [
-            [
-                "2ab9669c.39d62a"
-            ]
-        ]
-    },
-    {
         "id": "2ab9669c.39d62a",
         "type": "api-current-state",
         "z": "f9dcb285.9aa2d",
@@ -1110,12 +1013,12 @@
         "entity_location": "data",
         "override_data": "msg",
         "blockInputOverrides": false,
-        "x": 770,
+        "x": 750,
         "y": 20,
         "wires": [
             [],
             [
-                "4d36061a.3c5188"
+                "24633a12.833e16"
             ]
         ]
     },
@@ -1158,7 +1061,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 930,
-        "y": 260,
+        "y": 140,
         "wires": [
             []
         ]
@@ -1206,11 +1109,11 @@
         "out": [],
         "env": [],
         "status": {
-            "x": 260,
+            "x": 220,
             "y": 120,
             "wires": [
                 {
-                    "id": "c88b216.a88efe",
+                    "id": "5ff837b7.1e9db8",
                     "port": 0
                 }
             ]
@@ -1233,7 +1136,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 660,
-        "y": 80,
+        "y": 120,
         "wires": [
             []
         ]
@@ -1255,7 +1158,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 440,
-        "y": 80,
+        "y": 120,
         "wires": [
             [
                 "b792253e.5446d8"
@@ -1286,8 +1189,8 @@
         "wires": [
             [
                 "22e76f32.18911",
-                "5e069a84.ff25d4",
-                "11f66e7d.f79282"
+                "11f66e7d.f79282",
+                "5e069a84.ff25d4"
             ],
             [
                 "1d5562e0.3290fd"
@@ -1335,7 +1238,7 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 670,
-        "y": 200,
+        "y": 320,
         "wires": [
             []
         ]
@@ -1357,34 +1260,10 @@
         "output_location_type": "none",
         "mustacheAltTags": false,
         "x": 440,
-        "y": 200,
+        "y": 320,
         "wires": [
             [
                 "5015c7b3.ac0278"
-            ]
-        ]
-    },
-    {
-        "id": "2a1e8eeb.efc3f2",
-        "type": "api-call-service",
-        "z": "85d83311.18d58",
-        "name": "Armed lights on, 15%",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "light",
-        "service": "turn_on",
-        "entityId": "group.armed_lights",
-        "data": "{\"brightness_pct\":15,\"transition\":1.5,\"rgb_color\":[255,0,0]}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": true,
-        "x": 1020,
-        "y": 20,
-        "wires": [
-            [
-                "cc0c16e4.a21bd8"
             ]
         ]
     },
@@ -1408,11 +1287,11 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 810,
-        "y": 20,
+        "y": 60,
         "wires": [
             [],
             [
-                "2a1e8eeb.efc3f2"
+                "22e76f32.18911"
             ]
         ]
     },
@@ -1459,7 +1338,7 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 440,
-        "y": 140,
+        "y": 180,
         "wires": [
             [
                 "ef1ae779.81f098"
@@ -1483,8 +1362,8 @@
         "output_location": "",
         "output_location_type": "none",
         "mustacheAltTags": true,
-        "x": 620,
-        "y": 140,
+        "x": 640,
+        "y": 180,
         "wires": [
             [
                 "a81bc712.73dff8"
@@ -1506,8 +1385,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 770,
-        "y": 140,
+        "x": 790,
+        "y": 180,
         "wires": [
             [
                 "c54d93bf.c36f5"
@@ -1534,56 +1413,31 @@
         "override_data": "msg",
         "blockInputOverrides": false,
         "x": 940,
-        "y": 140,
+        "y": 240,
         "wires": [
             [
-                "4597a665.4a7bb8"
+                "ef1ae779.81f098"
             ],
             []
         ]
     },
     {
-        "id": "4597a665.4a7bb8",
-        "type": "api-call-service",
-        "z": "85d83311.18d58",
-        "name": "Close Garage",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "cover",
-        "service": "close_cover",
-        "entityId": "cover.door_garage",
-        "data": "",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": true,
-        "x": 1120,
-        "y": 140,
-        "wires": [
-            [
-                "c54d93bf.c36f5"
-            ]
-        ]
-    },
-    {
-        "id": "c88b216.a88efe",
-        "type": "poll-state",
+        "id": "5ff837b7.1e9db8",
+        "type": "server-state-changed",
         "z": "85d83311.18d58",
         "name": "Alarm state",
         "server": "26956a45.92d866",
         "version": 1,
-        "updateinterval": "60",
-        "updateIntervalUnits": "seconds",
+        "entityidfilter": "alarm_control_panel.home_alarm",
+        "entityidfiltertype": "exact",
         "outputinitially": false,
-        "outputonchanged": false,
-        "entity_id": "alarm_control_panel.home_alarm",
         "state_type": "str",
-        "halt_if": "",
+        "haltifstate": "",
         "halt_if_type": "str",
         "halt_if_compare": "is",
         "outputs": 1,
-        "x": 150,
+        "output_only_on_state_change": true,
+        "x": 90,
         "y": 120,
         "wires": [
             []
@@ -1592,7 +1446,7 @@
     {
         "id": "8bc435b.5fa93c8",
         "type": "tab",
-        "label": "Home Security System",
+        "label": "Security System",
         "disabled": false,
         "info": ""
     },
@@ -1686,7 +1540,7 @@
         "name": "Trigger automation________________________________",
         "info": "",
         "x": 230,
-        "y": 300,
+        "y": 280,
         "wires": []
     },
     {
@@ -1695,7 +1549,7 @@
         "z": "8bc435b.5fa93c8",
         "name": "Armed Home",
         "env": [],
-        "x": 590,
+        "x": 570,
         "y": 60,
         "wires": []
     },
@@ -1705,7 +1559,7 @@
         "z": "8bc435b.5fa93c8",
         "name": "Armed Away",
         "env": [],
-        "x": 590,
+        "x": 570,
         "y": 120,
         "wires": []
     },
@@ -1715,7 +1569,7 @@
         "z": "8bc435b.5fa93c8",
         "name": "Disarmed",
         "env": [],
-        "x": 580,
+        "x": 560,
         "y": 180,
         "wires": []
     },
@@ -1725,7 +1579,7 @@
         "z": "8bc435b.5fa93c8",
         "name": "Triggered",
         "env": [],
-        "x": 580,
+        "x": 560,
         "y": 240,
         "wires": []
     },
@@ -1736,7 +1590,7 @@
         "name": "Alarm Triggers",
         "env": [],
         "x": 100,
-        "y": 340,
+        "y": 320,
         "wires": [
             [
                 "32066c8c.69adc4"
@@ -1749,8 +1603,8 @@
         "z": "8bc435b.5fa93c8",
         "name": "",
         "env": [],
-        "x": 300,
-        "y": 340,
+        "x": 280,
+        "y": 320,
         "wires": [
             [
                 "52dc1496.50004c"
@@ -1773,35 +1627,81 @@
         "output_location": "payload",
         "output_location_type": "msg",
         "mustacheAltTags": false,
-        "x": 560,
-        "y": 340,
+        "x": 440,
+        "y": 320,
         "wires": [
             [
-                "efe5a57a.974318"
+                "19b64ec2.64dbe1"
             ]
         ]
     },
     {
-        "id": "efe5a57a.974318",
-        "type": "api-call-service",
+        "id": "19b64ec2.64dbe1",
+        "type": "chatbot-conversation",
         "z": "8bc435b.5fa93c8",
-        "name": "Alarm Triggered Notification",
-        "server": "26956a45.92d866",
-        "version": 1,
-        "service_domain": "telegram_bot",
-        "service": "send_message",
-        "entityId": "",
-        "data": "{\"message\":\"The alarm has been triggered!\",\"inline_keyboard\":[\"Disarm:/disarm\"]}",
-        "dataType": "json",
-        "mergecontext": "",
-        "output_location": "",
-        "output_location_type": "none",
-        "mustacheAltTags": false,
-        "x": 800,
-        "y": 340,
+        "name": "Convo to House bot",
+        "botTelegram": "ed1b9e00.efc8b",
+        "botTelegramProduction": "",
+        "botSlack": "",
+        "botSlackProduction": "",
+        "botFacebook": "",
+        "botFacebookProduction": "",
+        "botViber": "",
+        "botViberProduction": "",
+        "botUniversal": "",
+        "botUniversalProduction": "",
+        "botTwilio": "",
+        "botTwilioProduction": "",
+        "botDiscord": "",
+        "botDiscordProduction": "",
+        "chatId": "-373686357",
+        "transport": "telegram",
+        "messageId": "",
+        "contextMessageId": false,
+        "store": "",
+        "x": 620,
+        "y": 320,
         "wires": [
-            []
+            [
+                "8987e34.c208e2"
+            ]
         ]
+    },
+    {
+        "id": "8987e34.c208e2",
+        "type": "chatbot-inline-buttons",
+        "z": "8bc435b.5fa93c8",
+        "name": "Alarm has been triggered!",
+        "buttons": [
+            {
+                "type": "postback",
+                "label": "DISARM",
+                "value": "/disarm",
+                "answer": "",
+                "alert": false,
+                "style": "primary"
+            }
+        ],
+        "message": "The alarm has been triggered!",
+        "x": 850,
+        "y": 320,
+        "wires": [
+            [
+                "e6b5b7ef.506958"
+            ]
+        ]
+    },
+    {
+        "id": "e6b5b7ef.506958",
+        "type": "link out",
+        "z": "8bc435b.5fa93c8",
+        "name": "Test",
+        "links": [
+            "8762ae9.260ea5"
+        ],
+        "x": 995,
+        "y": 320,
+        "wires": []
     },
     {
         "id": "26956a45.92d866",
@@ -1813,5 +1713,20 @@
         "rejectUnauthorizedCerts": true,
         "ha_boolean": "y|yes|true|on|home|open",
         "connectionDelay": true
+    },
+    {
+        "id": "ed1b9e00.efc8b",
+        "type": "chatbot-telegram-node",
+        "z": "",
+        "botname": "Stroud_House_Bot",
+        "usernames": "pickle_slice, SarahS1217 ",
+        "providerToken": "",
+        "polling": "1000",
+        "store": "",
+        "log": "/config/www/logs/housebot_logs",
+        "parseMode": "HTML",
+        "debug": false,
+        "webHook": "",
+        "connectMode": "polling"
     }
 ]
