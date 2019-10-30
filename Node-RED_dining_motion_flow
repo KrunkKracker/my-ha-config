@@ -1,0 +1,169 @@
+[
+    {
+        "id": "7e44f794.b79738",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Turn off dining room light",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "light.dining",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 830,
+        "y": 240,
+        "wires": [
+            [
+                "d4a22f25.ca3bd"
+            ]
+        ]
+    },
+    {
+        "id": "98a9dd56.3d023",
+        "type": "comment",
+        "z": "76d371d4.45eeb",
+        "name": "4. (Below) If the dining room light is left on, turn it off if no motion for 20 minutes____________________________________________________________________________________________________",
+        "info": "",
+        "x": 820,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "dec4be70.750b",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Dining light off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.dining",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1180,
+        "y": 300,
+        "wires": [
+            [],
+            [
+                "7e44f794.b79738"
+            ]
+        ]
+    },
+    {
+        "id": "d4a22f25.ca3bd",
+        "type": "delay",
+        "z": "76d371d4.45eeb",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1010,
+        "y": 240,
+        "wires": [
+            [
+                "dec4be70.750b"
+            ]
+        ]
+    },
+    {
+        "id": "d4008dbc.f8334",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Dining motion",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "binary_sensor.motion_dining",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "72acbae4.a98374"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "72acbae4.a98374",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Dining light on?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.dining",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 460,
+        "y": 240,
+        "wires": [
+            [
+                "b3d3b62b.4bd0b8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b3d3b62b.4bd0b8",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "20",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "20min",
+        "x": 610,
+        "y": 240,
+        "wires": [
+            [
+                "7e44f794.b79738"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
