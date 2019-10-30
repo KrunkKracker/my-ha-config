@@ -1,0 +1,349 @@
+[
+    {
+        "id": "2759a671.a17caa",
+        "type": "subflow",
+        "name": "Nightlight Lights off?",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 40,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "97ae16db.976fe8"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 640,
+                "y": 80,
+                "wires": [
+                    {
+                        "id": "b39b1a4b.c6a6c8",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "color": "#DDAA99"
+    },
+    {
+        "id": "97ae16db.976fe8",
+        "type": "api-current-state",
+        "z": "2759a671.a17caa",
+        "name": "TV lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.tv_strip",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 190,
+        "y": 80,
+        "wires": [
+            [
+                "697d0d91.347424"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "697d0d91.347424",
+        "type": "api-current-state",
+        "z": "2759a671.a17caa",
+        "name": "Pendant lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.pendants",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 290,
+        "y": 140,
+        "wires": [
+            [
+                "b39b1a4b.c6a6c8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b39b1a4b.c6a6c8",
+        "type": "api-current-state",
+        "z": "2759a671.a17caa",
+        "name": "Kitchen lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.kitchen_night_lights_automation",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 470,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "76d371d4.45eeb",
+        "type": "tab",
+        "label": "test 5",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "32ccc327.c5485c",
+        "type": "comment",
+        "z": "76d371d4.45eeb",
+        "name": "1. (Below) If it's dark out, and the Pendant and TV lights are off, turn on kitchen can 1 and 3 to 10% for 25 seconds on motion_____________",
+        "info": "",
+        "x": 530,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "bfa0c83c.b0a358",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Kitchen night lights off",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_off",
+        "entityId": "group.kitchen_night_lights",
+        "data": "",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 1160,
+        "y": 140,
+        "wires": [
+            [
+                "95ddde73.328e8"
+            ]
+        ]
+    },
+    {
+        "id": "e7e01cd5.30c28",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Kitchen can 1 off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.kitchen_can_1",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1510,
+        "y": 200,
+        "wires": [
+            [],
+            [
+                "bfa0c83c.b0a358"
+            ]
+        ]
+    },
+    {
+        "id": "51083413.40918c",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Kitchen can 3 off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.kitchen_can_3",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 1490,
+        "y": 80,
+        "wires": [
+            [],
+            [
+                "bfa0c83c.b0a358"
+            ]
+        ]
+    },
+    {
+        "id": "75016e.3a708e94",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "25",
+        "units": "Second",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "25sec",
+        "x": 950,
+        "y": 120,
+        "wires": [
+            [
+                "bfa0c83c.b0a358"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9473f38a.8968a",
+        "type": "time-range-switch",
+        "z": "76d371d4.45eeb",
+        "name": "",
+        "lat": "27.918805",
+        "lon": "-81.866830",
+        "startTime": "sunset",
+        "endTime": "sunrise",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "2223b37.9f5914c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a016aa68.800ea8",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Kitchen night lights on (10%)",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "light",
+        "service": "turn_on",
+        "entityId": "group.kitchen_night_lights",
+        "data": "{\"brightness_pct\":10,\"transition\":6}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "payload",
+        "output_location_type": "msg",
+        "mustacheAltTags": false,
+        "x": 760,
+        "y": 120,
+        "wires": [
+            [
+                "75016e.3a708e94"
+            ]
+        ]
+    },
+    {
+        "id": "caf1472.87fffb8",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Kitchen Motion",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "sensor.kitchen_motion_burglar",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "num",
+        "haltifstate": "8",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 140,
+        "y": 120,
+        "wires": [
+            [
+                "9473f38a.8968a"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "95ddde73.328e8",
+        "type": "delay",
+        "z": "76d371d4.45eeb",
+        "name": "1sec",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "11",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1330,
+        "y": 140,
+        "wires": [
+            [
+                "51083413.40918c",
+                "e7e01cd5.30c28"
+            ]
+        ]
+    },
+    {
+        "id": "2223b37.9f5914c",
+        "type": "subflow:2759a671.a17caa",
+        "z": "76d371d4.45eeb",
+        "name": "Nightlight Lights off?",
+        "env": [],
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "a016aa68.800ea8"
+            ]
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
