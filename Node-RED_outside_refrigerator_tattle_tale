@@ -1,0 +1,360 @@
+[
+    {
+        "id": "76d371d4.45eeb",
+        "type": "tab",
+        "label": "test 5",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "51b41eaa.cb776",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Garage Refrigerator Door",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "binary_sensor.garage_fridge_door",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "6ca7fed2.a5514"
+            ],
+            [
+                "664f59d0.11a188"
+            ]
+        ]
+    },
+    {
+        "id": "541b1e1f.39132",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Garage Freezer Door",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "binary_sensor.garage_freezer_door",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": true,
+        "x": 300,
+        "y": 260,
+        "wires": [
+            [
+                "6bc50aa7.882744"
+            ],
+            [
+                "ea31ebda.bc0618"
+            ]
+        ]
+    },
+    {
+        "id": "6ca7fed2.a5514",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "3",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "3min",
+        "x": 710,
+        "y": 180,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "6bc50aa7.882744",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "3",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "3min",
+        "x": 710,
+        "y": 260,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "ea31ebda.bc0618",
+        "type": "change",
+        "z": "76d371d4.45eeb",
+        "name": "STOP",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 300,
+        "wires": [
+            [
+                "6bc50aa7.882744"
+            ]
+        ]
+    },
+    {
+        "id": "664f59d0.11a188",
+        "type": "change",
+        "z": "76d371d4.45eeb",
+        "name": "STOP",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "6ca7fed2.a5514"
+            ]
+        ]
+    },
+    {
+        "id": "550d77b3.91f988",
+        "type": "comment",
+        "z": "76d371d4.45eeb",
+        "name": "Alert if garage fridge/freezer is left open.",
+        "info": "",
+        "x": 350,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "6c9150c0.3a3d9",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Freezer temp",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "sensor.temp_garage_freezer",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "20",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "531dca51.d3ab84"
+            ],
+            [
+                "3247fed6.5007a2"
+            ]
+        ]
+    },
+    {
+        "id": "aa8c8326.76e57",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Refrigerator temp",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "sensor.temp_garage_fridge",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "50",
+        "halt_if_type": "num",
+        "halt_if_compare": "lt",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 280,
+        "y": 460,
+        "wires": [
+            [
+                "d102102e.6e3f1"
+            ],
+            [
+                "b9b3f13.fdada1"
+            ]
+        ]
+    },
+    {
+        "id": "d102102e.6e3f1",
+        "type": "switch",
+        "z": "76d371d4.45eeb",
+        "name": "Higher than 50*",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "50",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "85e8855e.7e24e8"
+            ]
+        ]
+    },
+    {
+        "id": "531dca51.d3ab84",
+        "type": "switch",
+        "z": "76d371d4.45eeb",
+        "name": "Higher then 20*",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "20",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "18ad6843.cabd58"
+            ]
+        ]
+    },
+    {
+        "id": "b9b3f13.fdada1",
+        "type": "change",
+        "z": "76d371d4.45eeb",
+        "name": "STOP",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 500,
+        "wires": [
+            [
+                "85e8855e.7e24e8"
+            ]
+        ]
+    },
+    {
+        "id": "3247fed6.5007a2",
+        "type": "change",
+        "z": "76d371d4.45eeb",
+        "name": "STOP",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "STOP",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 400,
+        "wires": [
+            [
+                "18ad6843.cabd58"
+            ]
+        ]
+    },
+    {
+        "id": "18ad6843.cabd58",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "10",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "10min",
+        "x": 710,
+        "y": 360,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "85e8855e.7e24e8",
+        "type": "stoptimer",
+        "z": "76d371d4.45eeb",
+        "duration": "10",
+        "units": "Minute",
+        "payloadtype": "num",
+        "payloadval": "0",
+        "name": "10min",
+        "x": 710,
+        "y": 460,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
