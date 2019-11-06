@@ -1,0 +1,221 @@
+[
+    {
+        "id": "9342cbfb.ad6ca8",
+        "type": "time-range-switch",
+        "z": "76d371d4.45eeb",
+        "name": "9p to 5a",
+        "lat": "11.11111",
+        "lon": "-11.11111",
+        "startTime": "21:00",
+        "endTime": "05:00",
+        "startOffset": 0,
+        "endOffset": 0,
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "60452ce2.c95ee4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "64aa6a0a.b17044",
+        "type": "comment",
+        "z": "76d371d4.45eeb",
+        "name": "If Wyatt's door is opened between 9p and 5a, say \"Wyatt's awake!\" on Master Bedroom Google Home.",
+        "info": "",
+        "x": 510,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "ab3e0aba.026338",
+        "type": "server-state-changed",
+        "z": "76d371d4.45eeb",
+        "name": "Wyatt's bedroom door",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "entityidfilter": "binary_sensor.interior_door_wyatts_bedroom",
+        "entityidfiltertype": "exact",
+        "outputinitially": false,
+        "state_type": "str",
+        "haltifstate": "on",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "outputs": 2,
+        "output_only_on_state_change": false,
+        "x": 260,
+        "y": 140,
+        "wires": [
+            [
+                "9342cbfb.ad6ca8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5e1ecf23.b7721",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Say \"Wyatt's Awake\"",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "tts",
+        "service": "google_cloud_say",
+        "entityId": "media_player.master_bedroom_speaker, media_player.master_bedroom_hub",
+        "data": "{\"message\":\"Wyatt's awake.\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1400,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f4f3975.8fbd98",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Set volume 70%",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "media_player",
+        "service": "volume_set",
+        "entityId": "media_player.master_bedroom_speaker, media_player.master_bedroom_hub",
+        "data": "{\"volume_level\":0.7}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1200,
+        "y": 140,
+        "wires": [
+            [
+                "5e1ecf23.b7721"
+            ]
+        ]
+    },
+    {
+        "id": "60452ce2.c95ee4",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "TV lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.tv_strip",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 590,
+        "y": 140,
+        "wires": [
+            [
+                "abbf7109.bf269"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "abbf7109.bf269",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Pendant lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "light.pendants",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 770,
+        "y": 200,
+        "wires": [
+            [
+                "d505383e.28fac8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d505383e.28fac8",
+        "type": "api-current-state",
+        "z": "76d371d4.45eeb",
+        "name": "Kitchen lights off?",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "outputs": 2,
+        "halt_if": "off",
+        "halt_if_type": "str",
+        "halt_if_compare": "is",
+        "override_topic": false,
+        "entity_id": "group.kitchen_lights",
+        "state_type": "str",
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "blockInputOverrides": false,
+        "x": 970,
+        "y": 140,
+        "wires": [
+            [
+                "4f4f3975.8fbd98",
+                "cf237563.62e2f8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cf237563.62e2f8",
+        "type": "api-call-service",
+        "z": "76d371d4.45eeb",
+        "name": "Wyatt's Awake",
+        "server": "26956a45.92d866",
+        "version": 1,
+        "service_domain": "telegram_bot",
+        "service": "send_message",
+        "entityId": "",
+        "data": "{\"message\":\"Wyatt is awake\"}",
+        "dataType": "json",
+        "mergecontext": "",
+        "output_location": "",
+        "output_location_type": "none",
+        "mustacheAltTags": false,
+        "x": 1200,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26956a45.92d866",
+        "type": "server",
+        "z": "",
+        "name": "Hass.io",
+        "legacy": false,
+        "hassio": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true
+    }
+]
