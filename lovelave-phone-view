@@ -1,0 +1,246 @@
+views:
+  - title: Home
+    type: custom:vertical-layout
+    badges: []
+    cards:
+      - type: weather-forecast
+        entity: weather.dark_sky
+        show_forecast: false
+        secondary_info_attribute: humidity
+      - type: grid
+        cards:
+          - type: button
+            tap_action:
+              action: more-info
+            entity: climate.my_ecobee
+            show_state: true
+            name: Thermostat
+          - type: button
+            tap_action:
+              action: more-info
+            entity: alarm_control_panel.home_alarm
+            show_state: true
+            hold_action:
+              action: none
+          - type: button
+            tap_action:
+              action: more-info
+            entity: group.family
+            show_state: true
+          - type: button
+            tap_action:
+              action: more-info
+            entity: group.exterior_doors
+            show_state: true
+          - type: button
+            tap_action:
+              action: more-info
+            entity: group.exterior_windows
+            show_state: true
+          - type: button
+            tap_action:
+              action: call-service
+              service: fan.set_percentage
+              service_data:
+                percentage: 100
+              target:
+                entity_id: fan.living_room
+            entity: fan.living_room
+        columns: 3
+      - type: grid
+        cards:
+          - type: light
+            entity: light.kitchen_lights
+          - type: button
+            tap_action:
+              action: toggle
+            entity: switch.livingroom_lamp
+            show_state: true
+          - type: button
+            tap_action:
+              action: toggle
+            entity: switch.small_livingroom_lamp
+            show_state: true
+          - type: light
+            entity: light.dining
+          - type: light
+            entity: light.wyatts_lamp
+          - type: light
+            entity: light.entryway
+          - type: light
+            entity: light.pendants
+          - type: light
+            entity: light.garage
+        columns: 2
+  - title: Lights
+    path: lights
+    icon: mdi:lightbulb
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: light.armed_lights
+          - entity: light.kitchen_lights
+          - entity: light.pendants
+          - entity: light.dining
+          - entity: light.entryway
+          - entity: light.garage
+          - entity: switch.livingroom_lamp
+          - entity: switch.small_livingroom_lamp
+          - entity: light.tv_strip
+          - entity: light.wyatts_lamp
+          - entity: light.lanai
+          - entity: light.front_porch
+        footer:
+          type: buttons
+          entities:
+            - light.interior_lights
+        title: Interior Lighting
+        show_header_toggle: false
+        state_color: true
+      - shorten_cards: true
+        consolidate_entities: true
+        color_wheel: true
+        persist_features: true
+        brightness: true
+        color_temp: true
+        white_value: true
+        color_picker: true
+        smooth_color_wheel: true
+        hide_header: false
+        child_card: true
+        show_slider_percent: true
+        full_width_sliders: true
+        brightness_icon: weather-sunny
+        white_icon: file-word-box
+        temperature_icon: thermometer
+        type: custom:light-entity-card
+        header: Kitchen Lights
+        entity: light.kitchen_lights
+        effects_list: true
+  - title: SysMon
+    path: sysmon
+    icon: mdi:gauge
+    badges: []
+    cards:
+      - type: grid
+        columns: 1
+        square: false
+        cards:
+          - type: markdown
+            content: '## System Health'
+            theme: transparent-card
+          - type: grid
+            columns: 4
+            cards:
+              - type: gauge
+                entity: sensor.processor_use
+                min: 0
+                max: 100
+                name: CPU Use
+                severity:
+                  green: 0
+                  yellow: 40
+                  red: 70
+              - type: gauge
+                entity: sensor.processor_temperature
+                min: 0
+                name: CPU TEMP
+                max: 212
+                severity:
+                  green: 0
+                  yellow: 84
+                  red: 148
+              - type: gauge
+                entity: sensor.memory_use
+                min: 0
+                max: 8000
+                name: Mem Use
+                severity:
+                  green: 0
+                  yellow: 3200
+                  red: 5600
+              - type: gauge
+                entity: sensor.disk_use_percent_home
+                min: 0
+                max: 100
+                name: Disk Use
+                severity:
+                  green: 0
+                  yellow: 40
+                  red: 70
+          - type: markdown
+            content: '## Host Information'
+          - type: grid
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.last_boot
+                  - entity: binary_sensor.remote_ui
+                  - entity: sensor.hassio_uptime
+                  - entity: binary_sensor.updater
+                  - entity: sensor.ipv4_address_eno1
+                state_color: true
+            columns: 1
+            square: false
+          - type: markdown
+            content: '## Updates Available '
+            theme: transparent-card
+          - type: grid
+            columns: 1
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: custom:auto-entities
+                    card:
+                      type: entities
+                      state_color: true
+                      show_header_toggle: false
+                    filter:
+                      include:
+                        - entity_id: '*.update*'
+                          state: 'on'
+                      exclude:
+                        - domain: automation
+                    sort:
+                      method: friendly_name
+                    show_empty: false
+                  - type: custom:auto-entities
+                    card:
+                      type: entities
+                      state_color: true
+                      show_header_toggle: false
+                    filter:
+                      include:
+                        - entity_id: '*.update*'
+                          state: '> 0'
+                      exclude:
+                        - domain: automation
+                    sort:
+                      method: friendly_name
+                    show_empty: false
+      - type: logbook
+        entities:
+          - sensor.processor_temperature
+          - sensor.processor_use
+        hours_to_show: 24
+        title: CPU Stats
+  - title: Media
+    path: media
+    badges: []
+    cards:
+      - type: custom:mini-media-player
+        entity: media_player.master_bedroom_tv
+        group: true
+        source: icon
+        sound_mode: icon
+        info: scroll
+        artwork: cover
+      - type: custom:mini-media-player
+        entity: media_player.living_room_chromecast_tv
+        group: true
+        artwork: cover-fit
+        source: icon
+        sound_mode: icon
+        info: scroll
+title: Phone View
