@@ -1,6 +1,6 @@
 platform: manual
 name: Home Alarm
-code: !secret alarm_code
+code: 1234
 trigger_time: 120
 armed_night:
   arming_time: 0
